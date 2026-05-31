@@ -40,8 +40,8 @@
             android:text="Open in Maps"
             android:textSize="12sp"
             android:textColor="#000000"
-            android:backgroundTint="#FFFFFF"
-            app:cornerRadius="10dp"/>
+            android:backgroundTint="#5DF8F8F8"
+            app:cornerRadius="20dp"/>
 
     </LinearLayout>
 

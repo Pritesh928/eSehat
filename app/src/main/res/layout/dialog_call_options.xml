@@ -45,7 +45,7 @@
         android:layout_height="48dp"
         android:text="Video Call via WhatsApp"
         android:textColor="#000000"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="#5DF8F8F8"
         app:cornerRadius="12dp"
         android:layout_marginBottom="10dp"/>
 

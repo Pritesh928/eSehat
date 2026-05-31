@@ -30,7 +30,14 @@ class HealthTracker : AppCompatActivity() {
                 "Mumbai Central Pharmacy",
                 "Near CST Station, Fort, Mumbai",
                 "https://maps.google.com/?q=Mumbai+Central+Pharmacy+Fort"
-            )
+            ),
+        ),
+        "400612" to listOf(
+            Triple(
+                "Mumbai Central Pharmacy",
+                "Near CST Station, Fort, Mumbai",
+                "https://maps.google.com/?q=Mumbai+Central+Pharmacy+Fort"
+            ),
         )
 
     )

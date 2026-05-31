@@ -276,18 +276,26 @@ class MainActivity : AppCompatActivity() {
         return card
     }
 
-
     private fun makeActionButton(
         label: String,
         colorHex: String,
         onClick: () -> Unit
     ): Button = Button(this).apply {
         text = label
-        textSize = 14f
+        textSize = 13f
         isAllCaps = false
         setTextColor(Color.WHITE)
-        setBackgroundColor(Color.parseColor(colorHex))
-        layoutParams = LinearLayout.LayoutParams(dpToPx(110), dpToPx(42))
+
+        // Rounded background using GradientDrawable
+        val drawable = android.graphics.drawable.GradientDrawable().apply {
+            setColor(Color.parseColor(colorHex))
+            cornerRadius = dpToPx(24).toFloat()
+        }
+        background = drawable
+
+        layoutParams = LinearLayout.LayoutParams(dpToPx(100), dpToPx(38)).also {
+            it.bottomMargin = dpToPx(4)
+        }
         setOnClickListener { onClick() }
     }
 
