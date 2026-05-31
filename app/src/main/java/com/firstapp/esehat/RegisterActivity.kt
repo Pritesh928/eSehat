@@ -12,7 +12,7 @@ import java.io.IOException
 
 class RegisterActivity : AppCompatActivity() {
 
-    private val BASE_URL = "https://esehat-backend.onrender.com"
+    private val BASE_URL = "https://esehat-auth.onrender.com/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

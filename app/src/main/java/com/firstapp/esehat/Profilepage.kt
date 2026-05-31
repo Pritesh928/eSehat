@@ -28,7 +28,7 @@ class Profilepage : AppCompatActivity() {
         }
         val EditProfileButton: Button = findViewById<Button>(R.id.btnEditProfile)
         EditProfileButton.setOnClickListener {
-            val intent35 = Intent(this, OTPActivity::class.java)
+            val intent35 = Intent(this, LoginActivity::class.java)
             startActivity(intent35)
         }
         val homeButton: ImageButton = findViewById<ImageButton>(R.id.homebtn)

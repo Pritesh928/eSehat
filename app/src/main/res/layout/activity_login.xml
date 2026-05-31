@@ -70,8 +70,6 @@
                     android:background="@drawable/input_bg"
                     android:padding="14dp"
                     android:inputType="text"
-                    android:hint="Enter your username"
-                    android:hintTextColor="#555555"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp"
                     android:layout_marginBottom="20dp"/>
@@ -93,8 +91,6 @@
                     android:background="@drawable/input_bg"
                     android:padding="14dp"
                     android:inputType="textPassword"
-                    android:hint="Enter your password"
-                    android:hintTextColor="#555555"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp"
                     android:layout_marginBottom="28dp"/>

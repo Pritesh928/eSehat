@@ -27,7 +27,7 @@ class BaymaxAI : AppCompatActivity() {
 
     private var facts = "{}"
 
-    private val BASE_URL = .......................... // Removed IP Adress of BaymaxAI Server
+    private val BASE_URL = "http://193.24.210.2:6699"
     private val client: OkHttpClient by lazy {
         val logging = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
