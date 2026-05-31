@@ -4,57 +4,48 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-
 
 class Profilepage : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
-    private lateinit var logoutBtn: Button
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profilepage)
-        auth = FirebaseAuth.getInstance()
-        logoutBtn = findViewById(R.id.logoutBtn)
+
+        val logoutBtn = findViewById<Button>(R.id.logoutBtn)
         logoutBtn.setOnClickListener {
-            auth.signOut()
-            val intent = Intent(this, RegisterActivity::class.java)
+
+            val prefs = getSharedPreferences("UserSession", MODE_PRIVATE)
+            prefs.edit().putBoolean("isLoggedIn", false).apply()
+
+            val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
-        val EditProfileButton: Button = findViewById<Button>(R.id.btnEditProfile)
-        EditProfileButton.setOnClickListener {
-            val intent35 = Intent(this, LoginActivity::class.java)
-            startActivity(intent35)
-        }
-        val homeButton: ImageButton = findViewById<ImageButton>(R.id.homebtn)
+
+        val homeButton = findViewById<ImageButton>(R.id.homebtn)
         homeButton.setOnClickListener {
-            val intent3 = Intent(this, MainActivity::class.java)
-            startActivity(intent3)
+            startActivity(Intent(this, MainActivity::class.java))
         }
-        val healthButton: ImageButton = findViewById<ImageButton>(R.id.healthtrackbtn)
+
+        val healthButton = findViewById<ImageButton>(R.id.healthtrackbtn)
         healthButton.setOnClickListener {
-            val intent4 = Intent(this, HealthTracker::class.java)
-            startActivity(intent4)
+            startActivity(Intent(this, HealthTracker::class.java))
         }
-        val videoconsultButton: ImageButton = findViewById<ImageButton>(R.id.videoconsult)
+
+        val videoconsultButton = findViewById<ImageButton>(R.id.videoconsult)
         videoconsultButton.setOnClickListener {
-            val intent5 = Intent(this, VideoConsult::class.java)
-            startActivity(intent5)
+            startActivity(Intent(this, VideoConsult::class.java))
         }
-        val AIButton: ImageButton = findViewById<ImageButton>(R.id.baymaxAI)
+
+        val AIButton = findViewById<ImageButton>(R.id.baymaxAI)
         AIButton.setOnClickListener {
-            val intent6 = Intent(this, BaymaxAI::class.java)
-            startActivity(intent6)
+            startActivity(Intent(this, BaymaxAI::class.java))
         }
-        val profileButton: ImageButton = findViewById<ImageButton>(R.id.profileBtn)
+
+        val profileButton = findViewById<ImageButton>(R.id.profileBtn)
         profileButton.setOnClickListener {
-            val intent7 = Intent(this, Profilepage::class.java)
-            startActivity(intent7)
+            startActivity(Intent(this, Profilepage::class.java))
         }
     }
 }

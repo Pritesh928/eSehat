@@ -12,15 +12,15 @@ import java.io.IOException
 
 class LoginActivity : AppCompatActivity() {
 
-    private val BASE_URL = "https://esehat-auth.onrender.com/"
+    private val BASE_URL = "https://esehat-auth.onrender.com"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val usernameField = findViewById<EditText>(R.id.login_username)
-        val passwordField = findViewById<EditText>(R.id.login_password)
-        val loginButton   = findViewById<Button>(R.id.login_button)
+        val usernameField  = findViewById<EditText>(R.id.login_username)
+        val passwordField  = findViewById<EditText>(R.id.login_password)
+        val loginButton    = findViewById<Button>(R.id.login_button)
         val signupRedirect = findViewById<TextView>(R.id.signupRedirectText)
 
         loginButton.setOnClickListener {
@@ -42,13 +42,20 @@ class LoginActivity : AppCompatActivity() {
 
             OkHttpClient().newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    runOnUiThread { Toast.makeText(this@LoginActivity, "Network error", Toast.LENGTH_SHORT).show() }
+                    runOnUiThread {
+                        Toast.makeText(this@LoginActivity, "Network error: ${e.message}", Toast.LENGTH_LONG).show()
+                    }
                 }
                 override fun onResponse(call: Call, response: Response) {
                     runOnUiThread {
                         if (response.isSuccessful) {
-                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                            finish()
+                            // Save session so app remembers login
+                            val prefs = getSharedPreferences("UserSession", MODE_PRIVATE)
+                            prefs.edit().putBoolean("isLoggedIn", true).apply()
+
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
                         } else {
                             Toast.makeText(this@LoginActivity, "Invalid username or password", Toast.LENGTH_SHORT).show()
                         }

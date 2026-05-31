@@ -523,81 +523,64 @@
 
     </LinearLayout>
 
-</ScrollView><!-- BottomNavigation -->
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+</ScrollView>
+
+    <!-- bottom buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
-        android:padding="10dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/edittext">
-            <!-- Extra space for scrolling -->
-            <View
-                android:layout_width="42dp"
-                android:layout_height="5dp"
-                />
+        android:orientation="horizontal"
+        android:background="@drawable/card_bg"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center"
+        android:elevation="8dp">
 
-            <!-- Home -->
-            <ImageButton
-                android:id="@+id/homebtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_home" />
-            <!-- Extra space for scrolling -->
-            <View
-                android:layout_width="20dp"
-                android:layout_height="5dp"
-                />
+        <ImageButton
+            android:id="@+id/homebtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <!-- Medication -->
-            <ImageButton
-                android:id="@+id/healthtrackbtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_more" />
-            <!-- Extra space for scrolling -->
-            <View
-                android:layout_width="20dp"
-                android:layout_height="5dp"
-                />
+        <ImageButton
+            android:id="@+id/healthtrackbtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_more"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <!-- consult -->
-            <ImageButton
-                android:id="@+id/videoconsult"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_medication" />
-            <!-- Extra space for scrolling -->
-            <View
-                android:layout_width="20dp"
-                android:layout_height="5dp"
-                />
+        <ImageButton
+            android:id="@+id/videoconsult"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_medication"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <!-- baymax-->
-            <ImageButton
-                android:id="@+id/baymaxAI"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_ai_logo" />
-            <!-- Extra space for scrolling -->
-            <View
-                android:layout_width="20dp"
-                android:layout_height="5dp"
-                />
+        <ImageButton
+            android:id="@+id/baymaxAI"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_ai_logo"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <!-- profile page-->
+        <ImageButton
+            android:id="@+id/profileBtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_profile"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <ImageButton
-                android:id="@+id/profileBtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_profile" />
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

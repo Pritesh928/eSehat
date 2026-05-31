@@ -248,158 +248,6 @@
                     android:textStyle="bold" />
 
 
-                <RelativeLayout
-                    android:id="@+id/card_paracetamol"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="14dp"
-                    android:background="@drawable/edittext"
-                    android:padding="20dp">
-
-                    <LinearLayout
-                        android:id="@+id/ll_paracetamol_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/ll_paracetamol_actions"
-                        android:layout_marginEnd="8dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_paracetamol_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Paracetamol"
-                            android:textColor="@android:color/black"
-                            android:textSize="22sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="After Dinner"
-                            android:textColor="@android:color/black"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Treats High Blood Pressure"
-                            android:textColor="#757575"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_paracetamol_actions"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:orientation="vertical">
-
-                        <Button
-                            android:id="@+id/btn_paracetamol_skipped"
-                            android:layout_width="110dp"
-                            android:layout_height="44dp"
-                            android:layout_marginBottom="8dp"
-                            android:backgroundTint="#0C1320"
-                            android:text="Skipped"
-                            android:textAllCaps="false"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp" />
-
-                        <Button
-                            android:id="@+id/btn_paracetamol_taken"
-                            android:layout_width="110dp"
-                            android:layout_height="44dp"
-                            android:backgroundTint="#48B88C"
-                            android:text="Taken"
-                            android:textAllCaps="false"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/card_metformin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="14dp"
-                    android:background="@drawable/edittext"
-                    android:padding="20dp">
-
-                    <LinearLayout
-                        android:id="@+id/ll_metformin_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/ll_metformin_actions"
-                        android:layout_marginEnd="8dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_metformin_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Metformin"
-                            android:textColor="@android:color/black"
-                            android:textSize="22sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="After Dinner"
-                            android:textColor="@android:color/black"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Lowers blood glucose levels"
-                            android:textColor="#757575"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_metformin_actions"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:orientation="vertical">
-
-                        <Button
-                            android:id="@+id/btn_metformin_skipped"
-                            android:layout_width="110dp"
-                            android:layout_height="44dp"
-                            android:layout_marginBottom="8dp"
-                            android:backgroundTint="#0C1320"
-                            android:text="Skipped"
-                            android:textAllCaps="false"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp" />
-
-                        <Button
-                            android:id="@+id/btn_metformin_taken"
-                            android:layout_width="110dp"
-                            android:layout_height="44dp"
-                            android:backgroundTint="#48B88C"
-                            android:text="Taken"
-                            android:textAllCaps="false"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-
                 <LinearLayout
                     android:id="@+id/ll_medication_list"
                     android:layout_width="match_parent"
@@ -428,66 +276,62 @@
     </ScrollView>
 
 
-    <RelativeLayout
-        android:id="@+id/bottom_navigation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <!-- bottom buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
-        android:padding="10dp">
+        android:orientation="horizontal"
+        android:background="@drawable/card_bg"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center"
+        android:elevation="8dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edittext"
-            android:orientation="horizontal"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp">
+        <ImageButton
+            android:id="@+id/homebtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <View android:layout_width="42dp" android:layout_height="5dp" />
+        <ImageButton
+            android:id="@+id/healthtrackbtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_more"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <ImageButton
-                android:id="@+id/homebtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_home"
-                android:contentDescription="Home" />
+        <ImageButton
+            android:id="@+id/videoconsult"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_medication"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <View android:layout_width="20dp" android:layout_height="5dp" />
+        <ImageButton
+            android:id="@+id/baymaxAI"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_ai_logo"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <ImageButton
-                android:id="@+id/healthtrackbtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_more"
-                android:contentDescription="Health" />
+        <ImageButton
+            android:id="@+id/profileBtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_profile"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <View android:layout_width="20dp" android:layout_height="5dp" />
-
-            <ImageButton
-                android:id="@+id/videoconsult"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_medication"
-                android:contentDescription="Consult" />
-
-            <View android:layout_width="20dp" android:layout_height="5dp" />
-
-            <ImageButton
-                android:id="@+id/baymaxAI"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_ai_logo"
-                android:contentDescription="AI" />
-
-            <View android:layout_width="20dp" android:layout_height="5dp" />
-
-            <ImageButton
-                android:id="@+id/profileBtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_profile"
-                android:contentDescription="Profile" />
-        </LinearLayout>
-    </RelativeLayout>
-
+    </LinearLayout>
 </RelativeLayout>

@@ -139,117 +139,63 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!--Bottom Navigation-->
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-        <LinearLayout
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/edittext"
-            android:clipToPadding="false"
-            android:fitsSystemWindows="true"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:layout_margin="10dp">
 
-            <!-- Home -->
-            <LinearLayout
-                android:id="@+id/nav_home"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
+    <!-- bottom buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="@drawable/card_bg"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center"
+        android:elevation="8dp">
 
-                <ImageButton
-                    android:id="@+id/homebtn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/ic_home" />
-            </LinearLayout>
+        <ImageButton
+            android:id="@+id/homebtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <!-- Pills -->
-            <LinearLayout
-                android:id="@+id/nav_medications"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/healthtrackbtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_more"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-                <ImageButton
-                    android:id="@+id/healthtrackbtn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/ic_more" />
-            </LinearLayout>
+        <ImageButton
+            android:id="@+id/videoconsult"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_medication"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <!-- Calendar -->
-            <LinearLayout
-                android:id="@+id/nav_calendar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/baymaxAI"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_ai_logo"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-                <ImageButton
-                    android:id="@+id/videoconsult"
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/ic_medication" />
-            </LinearLayout>
+        <ImageButton
+            android:id="@+id/profileBtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_profile"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <!-- Analytics -->
-            <LinearLayout
-                android:id="@+id/nav_analytics"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/baymaxAI"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/ic_ai_logo" />
-            </LinearLayout>
-
-            <!-- Profile -->
-            <LinearLayout
-                android:id="@+id/nav_profile"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/profileBtn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/ic_profile" />
-            </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

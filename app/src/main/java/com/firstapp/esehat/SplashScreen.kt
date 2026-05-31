@@ -26,7 +26,6 @@ class SplashScreen : AppCompatActivity() {
 
     private fun checkUserStatus() {
         val isLoggedIn = sharedPref.getBoolean("isLoggedIn", false)
-
         if (isLoggedIn) {
             startActivity(Intent(this, MainActivity::class.java))
         } else {

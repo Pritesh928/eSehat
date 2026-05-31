@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private val medications = mutableListOf(
-        Medication(1, "Paracetamol", "After Dinner", "Treats high blood pressure"),
-        Medication(2, "Metformin",   "After Dinner", "Lowers blood glucose levels")
+        Medication(1, "Paracetamol", "After Dinner", "Treats illness and normal fever"),
     )
     private var nextId = 3
 

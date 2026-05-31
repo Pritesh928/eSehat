@@ -49,157 +49,6 @@
                     android:text="pptsingh123@gmail.com"
                     android:textSize="14sp"
                     android:textColor="#A5A5A5" />
-
-                <!-- Edit Profile Button -->
-                <Button
-                    android:id="@+id/btnEditProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="12dp"
-                    android:text="Edit profile"
-                    android:textAllCaps="false"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
-                    android:backgroundTint="@color/black"
-                    android:paddingHorizontal="20dp" />
-
-                <!-- Inventories Section -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="Inventories"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#A5A5A5" />
-
-                <!-- My Stores Row -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/edittext"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp">
-
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/medicine_store" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="12dp"
-                        android:text="My Medicines"
-                        android:textSize="15sp"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/circle_completed"
-                        android:gravity="center"
-                        android:text="2"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-                <!-- Support Row -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/edittext"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp">
-
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/health_check" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="Digital Health Records"
-                        android:textSize="15sp"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <!-- Preferences Section -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="Preferences"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#A5A5A5" />
-
-                <!-- Push Notifications -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/edittext"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp">
-
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/notification" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="12dp"
-                        android:text="Notifications"
-                        android:textSize="15sp"
-                        android:textColor="@color/black" />
-
-                    <Switch
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true" />
-
-                </LinearLayout>
-
-
-
-                <!-- PIN Code -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/edittext"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp">
-
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/ic_pin" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="400612"
-                        android:textSize="15sp"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
                 <!-- Logout -->
                 <Button
                     android:id="@+id/logoutBtn"
@@ -215,98 +64,77 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginBottom="50dp"> <!-- Adds 50dp of space below the content -->
-                    <!-- Your content views here -->
+                    android:layout_marginBottom="50dp">
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginBottom="50dp"> <!-- Adds 50dp of space below the content -->
-                    <!-- Your content views here -->
+                    android:layout_marginBottom="50dp">
                 </LinearLayout>
 
             </LinearLayout>
 
         </ScrollView>
-    <!-- BottomNavigation -->
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <!-- bottom buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
-        android:padding="10dp"
-        android:layout_marginLeft="-20dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/edittext"
-            >
-            <!-- Extra space for scrolling -->
-            <View
-                android:layout_width="42dp"
-                android:layout_height="5dp"
-                />
-            <!-- Home -->
-            <ImageButton
-                android:id="@+id/homebtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_home" />
-            <!-- Extra space for scrolling -->
-            <View
-                android:layout_width="20dp"
-                android:layout_height="5dp"
-                />
+        android:orientation="horizontal"
+        android:background="@drawable/card_bg"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center"
+        android:elevation="8dp">
 
-            <!-- Medication -->
-            <ImageButton
-                android:id="@+id/healthtrackbtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_more" />
-            <!-- Extra space for scrolling -->
-            <View
-                android:layout_width="20dp"
-                android:layout_height="5dp"
-                />
+        <ImageButton
+            android:id="@+id/homebtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <!-- consult -->
-            <ImageButton
-                android:id="@+id/videoconsult"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_medication" />
-            <!-- Extra space for scrolling -->
-            <View
-                android:layout_width="20dp"
-                android:layout_height="5dp"
-                />
+        <ImageButton
+            android:id="@+id/healthtrackbtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_more"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <!-- baymax-->
-            <ImageButton
-                android:id="@+id/baymaxAI"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_ai_logo" />
-            <!-- Extra space for scrolling -->
-            <View
-                android:layout_width="20dp"
-                android:layout_height="5dp"
-                />
+        <ImageButton
+            android:id="@+id/videoconsult"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_medication"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <!-- profile page-->
+        <ImageButton
+            android:id="@+id/baymaxAI"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_ai_logo"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-            <ImageButton
-                android:id="@+id/profileBtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_profile" />
+        <ImageButton
+            android:id="@+id/profileBtn"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_profile"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"/>
 
-        </LinearLayout>
-
-
-    </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>
 
