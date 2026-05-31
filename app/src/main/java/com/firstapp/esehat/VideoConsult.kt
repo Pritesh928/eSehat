@@ -12,9 +12,9 @@ import com.google.android.material.button.MaterialButton
 class VideoConsult : AppCompatActivity() {
 
 
-    private val doctor1Phone = "919619618524"
-    private val doctor2Phone = "917xxxxxxxxx"
-    private val doctor3Phone = "917xxxxxxxxx"
+    private val doctor1Phone = "917276872115"
+    private val doctor2Phone = "919892240434"
+    private val doctor3Phone = "918779560816"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +30,10 @@ class VideoConsult : AppCompatActivity() {
             showCallDialog("Dr. Ayush Telawane", doctor1Phone)
         }
         findViewById<MaterialButton>(R.id.call_btn2).setOnClickListener {
-            showCallDialog("Dr. Palak Sonanis", doctor2Phone)
+            showCallDialog("Dr. Soham Suvarna", doctor2Phone)
         }
         findViewById<MaterialButton>(R.id.call_btn3).setOnClickListener {
-            showCallDialog("Dr. Simran Dhanwani", doctor3Phone)
+            showCallDialog("Dr. Dishant Soyam", doctor3Phone)
         }
 
         // Bottom nav

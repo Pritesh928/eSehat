@@ -131,7 +131,7 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingStart="16dp"
-                android:background="#DFFFFFFF"
+                android:background="@color/white"
                 android:paddingEnd="8dp">
 
                 <EditText
@@ -154,7 +154,6 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:cardCornerRadius="24dp"
-            app:cardElevation="20dp"
             app:cardBackgroundColor="@color/white">
 
             <ImageButton

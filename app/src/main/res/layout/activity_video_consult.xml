@@ -63,7 +63,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_doctor1"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="140dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:cardBackgroundColor="#1A1A2E"
@@ -73,15 +73,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="16dp">
-
-                    <ImageView
-                        android:id="@+id/img1"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/doctor_james"
-                        android:scaleType="centerCrop"/>
 
                     <TextView
                         android:id="@+id/name1"
@@ -97,7 +88,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/name1"
-                        android:text="Mental Health Specialist"
+                        android:text="Neuro Surgeon "
                         android:textColor="#888888"
                         android:textSize="12sp"
                         android:layout_marginTop="4dp"/>
@@ -131,7 +122,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_doctor2"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="140dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:cardBackgroundColor="#1E2A1E"
@@ -142,20 +133,11 @@
                     android:layout_height="match_parent"
                     android:padding="16dp">
 
-                    <ImageView
-                        android:id="@+id/img2"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/doctor_lisa"
-                        android:scaleType="centerCrop"/>
-
                     <TextView
                         android:id="@+id/name2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dr. Palak Sonanis"
+                        android:text="Dr. Soham Suvarna"
                         android:textColor="#FFFFFF"
                         android:textSize="15sp"
                         android:textStyle="bold"/>
@@ -183,7 +165,7 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/call_btn2"
                         android:layout_width="100dp"
-                        android:layout_height="32dp"
+                        android:layout_height="42dp"
                         android:layout_below="@id/tagline2"
                         android:layout_marginTop="8dp"
                         android:text="Consult"
@@ -199,7 +181,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_doctor3"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="140dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:cardBackgroundColor="#2A1E1E"
@@ -207,23 +189,14 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="140dp"
                     android:padding="16dp">
-
-                    <ImageView
-                        android:id="@+id/img3"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/doctur"
-                        android:scaleType="centerCrop"/>
 
                     <TextView
                         android:id="@+id/name3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dr. Simran Singh"
+                        android:text="Dr. Dishant Soyam"
                         android:textColor="#FFFFFF"
                         android:textSize="15sp"
                         android:textStyle="bold"/>
@@ -251,7 +224,7 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/call_btn3"
                         android:layout_width="100dp"
-                        android:layout_height="32dp"
+                        android:layout_height="42dp"
                         android:layout_below="@id/tagline3"
                         android:layout_marginTop="8dp"
                         android:text="Consult"
