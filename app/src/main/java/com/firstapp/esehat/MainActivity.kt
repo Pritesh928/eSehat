@@ -1,172 +1,300 @@
 package com.firstapp.esehat
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import java.util.Calendar
+
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var cardParacetamol: View
-    private lateinit var cardMetformin: View
-    private lateinit var circleViews: List<View>
-    private lateinit var tvProgressCount: TextView
-    private lateinit var tvMedicationsLeft: TextView
 
-    private var takenMedications = 0
-    private var currentCircleIndex = 0
-    private var totalMedications = 0   // dynamic instead of fixed 8
-    private var todayMedications = 0
+    private lateinit var tvGreeting: TextView
+    private lateinit var tvMedicationsLeft: TextView
+    private lateinit var tvProgressCount: TextView
+    private lateinit var llMedicationList: LinearLayout
+    private lateinit var tvEmptyState: TextView
+    private lateinit var btnAddMedication: LinearLayout
+
+    private val dotViews = mutableListOf<View>()
+    private val TOTAL_DOTS = 8
+
+
+    private val medications = mutableListOf(
+        Medication(1, "Paracetamol", "After Dinner", "Treats high blood pressure"),
+        Medication(2, "Metformin",   "After Dinner", "Lowers blood glucose levels")
+    )
+    private var nextId = 3
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        setupNavigation()
+        bindViews()
+        setupDotRefs()
+        setupListeners()
+        render()
+    }
 
-        cardParacetamol = findViewById(R.id.card_paracetamol)
-        cardMetformin = findViewById(R.id.card_metformin)
 
-        tvProgressCount = findViewById(R.id.tv_progress_count)
-        tvMedicationsLeft = findViewById(R.id.tv_medications_left)
+    private fun bindViews() {
+        tvGreeting         = findViewById(R.id.tv_greeting)
+        tvMedicationsLeft  = findViewById(R.id.tv_medications_left)
+        tvProgressCount    = findViewById(R.id.tv_progress_count)
+        llMedicationList   = findViewById(R.id.ll_medication_list)
+        tvEmptyState       = findViewById(R.id.tv_empty_state)
+        btnAddMedication   = findViewById(R.id.btn_add_medication)
+    }
 
-        val btnParacetamolSkipped: Button = findViewById(R.id.btn_paracetamol_skipped)
-        val btnParacetamolTaken: Button = findViewById(R.id.btn_paracetamol_taken)
-        val btnMetforminSkipped: Button = findViewById(R.id.btn_metformin_skipped)
-        val btnMetforminTaken: Button = findViewById(R.id.btn_metformin_taken)
-
-        circleViews = listOf(
-            findViewById(R.id.circle1),
-            findViewById(R.id.circle2),
-            findViewById(R.id.circle3),
-            findViewById(R.id.circle4),
-            findViewById(R.id.circle5),
-            findViewById(R.id.circle6),
-            findViewById(R.id.circle7),
-            findViewById(R.id.circle8)
+    private fun setupDotRefs() {
+        val ids = listOf(
+            R.id.circle1, R.id.circle2, R.id.circle3, R.id.circle4,
+            R.id.circle5, R.id.circle6, R.id.circle7, R.id.circle8
         )
-
-        // count how many medication cards are visible
-        totalMedications = listOf(cardParacetamol, cardMetformin).count { it.visibility == View.VISIBLE }
-        todayMedications = totalMedications
-
-        // Initial UI
-        updateUI()
-
-        // Button actions
-        btnParacetamolSkipped.setOnClickListener {
-            cardParacetamol.visibility = View.GONE
-            updateProgressCircleg(taken = false, skipped = true)
-        }
-        btnParacetamolTaken.setOnClickListener {
-            cardParacetamol.visibility = View.GONE
-            updateProgressCircleg(taken = true)
-        }
-
-        btnMetforminSkipped.setOnClickListener {
-            cardMetformin.visibility = View.GONE
-            updateProgressCircleg(taken = false, skipped = true)
-        }
-        btnMetforminTaken.setOnClickListener {
-            cardMetformin.visibility = View.GONE
-            updateProgressCircleg(taken = true)
-        }
-
-        // Navigation setup
-        setupNavigation()
-    }
-    private fun updateProgressCircle(taken: Boolean, skipped: Boolean = false) {
-        if (taken) {
-            takenMedications++
-        }
-        if (skipped) {
-            takenMedications++
-        }
-        updateUI()
-
+        ids.forEach { dotViews.add(findViewById(it)) }
     }
 
-    private fun updateProgressCircleg(taken: Boolean, skipped: Boolean = false) {
-        if (currentCircleIndex < circleViews.size) {
-            val circle = circleViews[currentCircleIndex]
 
-            when {
-                taken -> {
-                    circle.setBackgroundResource(R.drawable.circle_completed) // green
-                    takenMedications++
-                }
-                skipped -> {
-                    circle.setBackgroundResource(R.drawable.skipped_circle) // red
-                    // don't increment takenMedications here
-                }
-                else -> {
-                    circle.setBackgroundResource(R.drawable.circle_incomplete) // grey
-                }
-            }
+    private fun setupListeners() {
 
-            todayMedications--
-            currentCircleIndex++
-            updateUI()
+        btnAddMedication.setOnClickListener { showAddDialog() }
+        findViewById<ImageButton>(R.id.ib_add_circle).setOnClickListener { showAddDialog() }
+
+
+        findViewById<FrameLayout>(R.id.btn_consult).setOnClickListener {
+            startActivity(Intent(this, VideoConsult::class.java))
+            Toast.makeText(this, "Opening video consult…", Toast.LENGTH_SHORT).show()
+        }
+        findViewById<FrameLayout>(R.id.btn_ask_ai).setOnClickListener {
+            startActivity(Intent(this, BaymaxAI::class.java))
+            Toast.makeText(this, "Opening AI assistant…", Toast.LENGTH_SHORT).show()
+        }
+
+
+        findViewById<ImageButton>(R.id.homebtn).setOnClickListener {
+        }
+        findViewById<ImageButton>(R.id.healthtrackbtn).setOnClickListener {
+            Toast.makeText(this, "Health Tracking", Toast.LENGTH_SHORT).show()
+             startActivity(Intent(this, HealthTracker::class.java))
+        }
+        findViewById<ImageButton>(R.id.videoconsult).setOnClickListener {
+            Toast.makeText(this, "Video Consult", Toast.LENGTH_SHORT).show()
+             startActivity(Intent(this, VideoConsult::class.java))
+        }
+        findViewById<ImageButton>(R.id.baymaxAI).setOnClickListener {
+            Toast.makeText(this, "AI Assistant", Toast.LENGTH_SHORT).show()
+             startActivity(Intent(this, BaymaxAI::class.java))
+        }
+        findViewById<ImageButton>(R.id.profileBtn).setOnClickListener {
+            Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
+             startActivity(Intent(this, Profilepage::class.java))
         }
     }
 
 
-    private fun updateUI() {
-        // Update progress fraction dynamically
-        tvProgressCount.text = "$takenMedications/$totalMedications"
+    private fun showAddDialog() {
+        AddMedicationDialog { name, timing, desc ->
+            medications.add(Medication(nextId++, name, timing, desc))
+            render()
+            Toast.makeText(this, "$name added!", Toast.LENGTH_SHORT).show()
+        }.show(supportFragmentManager, "AddMedicationDialog")
+    }
 
-        // Update medications left message
-        tvMedicationsLeft.text = if (todayMedications > 0) {
-            "You have $todayMedications medications left for today."
+
+    private fun render() {
+        updateGreeting()
+        updateHeader()
+        updateDots()
+        buildMedCards()
+    }
+
+    private fun updateGreeting() {
+        val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        val salutation = when {
+            hour < 12 -> "Good morning"
+            hour < 17 -> "Good afternoon"
+            else      -> "Good evening"
+        }
+        tvGreeting.text = "$salutation, Pritesh!"
+    }
+
+    private fun updateHeader() {
+        val taken   = medications.count { it.status == MedStatus.TAKEN }
+        val pending = medications.count { it.status == MedStatus.PENDING }
+        val total   = medications.size
+
+        tvProgressCount.text = "$taken/$total"
+
+        tvMedicationsLeft.text = if (pending == 0) {
+            "All done for today! Great job 🎉"
         } else {
-            "All medications completed for today!"
+            "You have $pending medication${if (pending > 1) "s" else ""} left for today."
         }
     }
 
-    private fun setupNavigation() {
-        val videoconsult_upButton: Button = findViewById(R.id.videoconsult_up)
-        videoconsult_upButton.setOnClickListener {
-            val intent01 = Intent(this, VideoConsult::class.java)
-            startActivity(intent01)
-        }
-
-        val BaymaxAI_upButton: Button = findViewById(R.id.baymaxAI_up)
-        BaymaxAI_upButton.setOnClickListener {
-            val intent02 = Intent(this, BaymaxAI::class.java)
-            startActivity(intent02)
-        }
-
-        val homeButton: ImageButton = findViewById(R.id.homebtn)
-        homeButton.setOnClickListener {
-            val intent3 = Intent(this, MainActivity::class.java)
-            startActivity(intent3)
-        }
-
-        val healthButton: ImageButton = findViewById(R.id.healthtrackbtn)
-        healthButton.setOnClickListener {
-            val intent4 = Intent(this, HealthTracker::class.java)
-            startActivity(intent4)
-        }
-
-        val videoconsultButton: ImageButton = findViewById(R.id.videoconsult)
-        videoconsultButton.setOnClickListener {
-            val intent5 = Intent(this, VideoConsult::class.java)
-            startActivity(intent5)
-        }
-
-        val AIButton: ImageButton = findViewById(R.id.baymaxAI)
-        AIButton.setOnClickListener {
-            val intent6 = Intent(this, BaymaxAI::class.java)
-            startActivity(intent6)
-        }
-
-        val profileButton: ImageButton = findViewById(R.id.profileBtn)
-        profileButton.setOnClickListener {
-            val intent7 = Intent(this, Profilepage::class.java)
-            startActivity(intent7)
+    private fun updateDots() {
+        val taken = medications.count { it.status == MedStatus.TAKEN }
+        dotViews.forEachIndexed { index, dot ->
+            dot.setBackgroundResource(
+                if (index < taken) R.drawable.circle_completed
+                else               R.drawable.circle_incomplete
+            )
         }
     }
+
+
+    private fun buildMedCards() {
+        llMedicationList.removeAllViews()
+
+        if (medications.isEmpty()) {
+            tvEmptyState.visibility = View.VISIBLE
+            return
+        }
+        tvEmptyState.visibility = View.GONE
+
+        medications.forEach { med -> llMedicationList.addView(createMedCard(med)) }
+    }
+
+    private fun createMedCard(med: Medication): View {
+        val card = RelativeLayout(this).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).also { it.bottomMargin = dpToPx(12) }
+            setBackgroundResource(R.drawable.edittext)
+            setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16))
+            alpha = if (med.status == MedStatus.SKIPPED) 0.55f else 1f
+        }
+
+
+        val infoLayout = LinearLayout(this).apply {
+            id = View.generateViewId()
+            orientation = LinearLayout.VERTICAL
+            layoutParams = RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+            ).also {
+                it.addRule(RelativeLayout.ALIGN_PARENT_START)
+                it.addRule(RelativeLayout.CENTER_VERTICAL)
+            }
+        }
+
+        val tvName = TextView(this).apply {
+            text = med.name
+            textSize = 20f
+            setTextColor(Color.BLACK)
+            if (med.status == MedStatus.SKIPPED) paintFlags =
+                paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+        }
+        val tvTime = TextView(this).apply {
+            text = med.timing
+            textSize = 14f
+            setTextColor(Color.BLACK)
+            (layoutParams as? LinearLayout.LayoutParams)?.topMargin = dpToPx(2)
+        }
+        val tvDesc = TextView(this).apply {
+            text = med.description
+            textSize = 12f
+            setTextColor(Color.parseColor("#757575"))
+            (layoutParams as? LinearLayout.LayoutParams)?.topMargin = dpToPx(2)
+        }
+
+
+        val tvBadge = TextView(this).apply {
+            visibility = if (med.status == MedStatus.PENDING) View.GONE else View.VISIBLE
+            when (med.status) {
+                MedStatus.TAKEN -> {
+                    text = "✓ Taken"
+                    setBackgroundColor(Color.parseColor("#D1F5E8"))
+                    setTextColor(Color.parseColor("#0F6E56"))
+                }
+                MedStatus.SKIPPED -> {
+                    text = "Skipped"
+                    setBackgroundColor(Color.parseColor("#F1F1F1"))
+                    setTextColor(Color.parseColor("#666666"))
+                }
+                else -> {}
+            }
+            textSize = 11f
+            setPadding(dpToPx(8), dpToPx(3), dpToPx(8), dpToPx(3))
+            val margin = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).also { it.topMargin = dpToPx(6) }
+            layoutParams = margin
+        }
+
+        infoLayout.addView(tvName)
+        infoLayout.addView(tvTime)
+        infoLayout.addView(tvDesc)
+        infoLayout.addView(tvBadge)
+
+
+        val actionsLayout = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.END
+            layoutParams = RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+            ).also {
+                it.addRule(RelativeLayout.ALIGN_PARENT_END)
+                it.addRule(RelativeLayout.CENTER_VERTICAL)
+            }
+        }
+
+        when (med.status) {
+            MedStatus.PENDING -> {
+                val btnSkip = makeActionButton("Skip", "#0C1320") {
+                    med.status = MedStatus.SKIPPED
+                    toast("${med.name} skipped")
+                    render()
+                }
+                val btnTake = makeActionButton("Take", "#48B88C") {
+                    med.status = MedStatus.TAKEN
+                    toast("${med.name} marked as taken ✓")
+                    render()
+                }
+                actionsLayout.addView(btnSkip)
+                actionsLayout.addView(Space(this).apply { minimumHeight = dpToPx(8) })
+                actionsLayout.addView(btnTake)
+            }
+            else -> {
+                val btnUndo = makeActionButton("Undo", "#888888") {
+                    med.status = MedStatus.PENDING
+                    toast("${med.name} reset")
+                    render()
+                }
+                actionsLayout.addView(btnUndo)
+            }
+        }
+
+        card.addView(infoLayout)
+        card.addView(actionsLayout)
+        return card
+    }
+
+
+    private fun makeActionButton(
+        label: String,
+        colorHex: String,
+        onClick: () -> Unit
+    ): Button = Button(this).apply {
+        text = label
+        textSize = 14f
+        isAllCaps = false
+        setTextColor(Color.WHITE)
+        setBackgroundColor(Color.parseColor(colorHex))
+        layoutParams = LinearLayout.LayoutParams(dpToPx(110), dpToPx(42))
+        setOnClickListener { onClick() }
+    }
+
+    private fun toast(msg: String) =
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
+    private fun dpToPx(dp: Int): Int =
+        (dp * resources.displayMetrics.density).toInt()
 }

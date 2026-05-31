@@ -107,31 +107,6 @@
                         android:textSize="12sp" />
 
                 </LinearLayout>
-
-                <!-- Support Row -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/edittext"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp">
-
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/ic_support" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="Support"
-                        android:textSize="15sp"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
                 <!-- Support Row -->
                 <LinearLayout
                     android:layout_width="match_parent"

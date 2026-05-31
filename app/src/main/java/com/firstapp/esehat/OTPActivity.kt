@@ -18,7 +18,7 @@ class OTPActivity: AppCompatActivity() {
         val verifyButton : Button = findViewById<Button>(R.id.verification)
 
         verifyButton.setOnClickListener {
-            //intent init
+            //intent init 
             val intent = Intent(this, MainActivity::class.java)
             //start intent
             startActivity(intent)

@@ -2,33 +2,63 @@ package com.firstapp.esehat
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.*
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
+import java.io.IOException
 
 class LoginActivity : AppCompatActivity() {
+
+    private val BASE_URL = "https://esehat-backend.onrender.com"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val loginbutton : Button = findViewById<Button>(R.id.login_button)
-        loginbutton.setOnClickListener {
-            //intent init
-            val intent = Intent(this , MainActivity::class.java)
-            //intent start
-            startActivity(intent)
+        val usernameField = findViewById<EditText>(R.id.login_username)
+        val passwordField = findViewById<EditText>(R.id.login_password)
+        val loginButton   = findViewById<Button>(R.id.login_button)
+        val signupRedirect = findViewById<TextView>(R.id.signupRedirectText)
+
+        loginButton.setOnClickListener {
+            val username = usernameField.text.toString().trim()
+            val password = passwordField.text.toString().trim()
+
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val json = JSONObject().apply {
+                put("username", username)
+                put("password", password)
+            }
+
+            val body = json.toString().toRequestBody("application/json".toMediaType())
+            val request = Request.Builder().url("$BASE_URL/login").post(body).build()
+
+            OkHttpClient().newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    runOnUiThread { Toast.makeText(this@LoginActivity, "Network error", Toast.LENGTH_SHORT).show() }
+                }
+                override fun onResponse(call: Call, response: Response) {
+                    runOnUiThread {
+                        if (response.isSuccessful) {
+                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            finish()
+                        } else {
+                            Toast.makeText(this@LoginActivity, "Invalid username or password", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            })
         }
 
-        val signupRedirect : TextView = findViewById<TextView>(R.id.signupRedirectText)
-
         signupRedirect.setOnClickListener {
-            //intent init
-            val intent1 = Intent(this, RegisterActivity::class.java)
-            //start activity
-            startActivity(intent1)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 }
