@@ -286,7 +286,7 @@ class MainActivity : AppCompatActivity() {
         isAllCaps = false
         setTextColor(Color.WHITE)
 
-        // Rounded background using GradientDrawable
+
         val drawable = android.graphics.drawable.GradientDrawable().apply {
             setColor(Color.parseColor(colorHex))
             cornerRadius = dpToPx(24).toFloat()

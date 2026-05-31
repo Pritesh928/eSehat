@@ -36,7 +36,7 @@ class VideoConsult : AppCompatActivity() {
             showCallDialog("Dr. Dishant Soyam", doctor3Phone)
         }
 
-        // Bottom nav
+
         findViewById<ImageButton>(R.id.homebtn).setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }

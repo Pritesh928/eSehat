@@ -381,7 +381,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation -->
+    <!--    bottom buttons-->
     <LinearLayout
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"

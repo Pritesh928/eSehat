@@ -44,7 +44,7 @@ class Profilepage : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
-        // bottom buttons
+
         findViewById<ImageButton>(R.id.homebtn).setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }

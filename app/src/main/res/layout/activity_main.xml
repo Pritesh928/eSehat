@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Header -->
+
             <RelativeLayout
                 android:id="@+id/header_section"
                 android:layout_width="match_parent"
@@ -156,7 +156,7 @@
                 </RelativeLayout>
             </RelativeLayout>
 
-            <!-- Quick Actions + Medication List -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
                 android:layout_marginEnd="16dp"
                 android:orientation="vertical">
 
-                <!-- Consult + Ask AI buttons -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -11,6 +11,7 @@
         android:left="16dp"
         android:top="12dp"
         android:right="16dp"
-        android:bottom="12dp">ZZZZ</padding>
+        android:bottom="12dp">
+    </padding>
 
 </shape>

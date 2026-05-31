@@ -73,7 +73,8 @@ class HealthTracker : AppCompatActivity() {
             loadMedicals(pin, container, emptyState)
         }
 
-        // Bottom nav
+
+
         findViewById<ImageButton>(R.id.homebtn).setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }

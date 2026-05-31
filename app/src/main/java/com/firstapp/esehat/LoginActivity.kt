@@ -49,7 +49,6 @@ class LoginActivity : AppCompatActivity() {
                 override fun onResponse(call: Call, response: Response) {
                     runOnUiThread {
                         if (response.isSuccessful) {
-                            // Save session + username
                             val prefs = getSharedPreferences("UserSession", MODE_PRIVATE)
                             prefs.edit()
                                 .putBoolean("isLoggedIn", true)
