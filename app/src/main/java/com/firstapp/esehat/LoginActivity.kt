@@ -49,9 +49,12 @@ class LoginActivity : AppCompatActivity() {
                 override fun onResponse(call: Call, response: Response) {
                     runOnUiThread {
                         if (response.isSuccessful) {
-                            // Save session so app remembers login
+                            // Save session + username
                             val prefs = getSharedPreferences("UserSession", MODE_PRIVATE)
-                            prefs.edit().putBoolean("isLoggedIn", true).apply()
+                            prefs.edit()
+                                .putBoolean("isLoggedIn", true)
+                                .putString("username", username)
+                                .apply()
 
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

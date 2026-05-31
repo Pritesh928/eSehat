@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/card_bg"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/dialog_doctor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dr. Name"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="6dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How would you like to connect?"
+        android:textColor="#888888"
+        android:textSize="13sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="6dp"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Good internet? Go with Video. On mobile data or weak signal? Audio call is more reliable."
+        android:textColor="#AAAAAA"
+        android:textSize="12sp"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:lineSpacingExtra="3dp"
+        android:layout_marginBottom="20dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_video_call"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Video Call via WhatsApp"
+        android:textColor="#000000"
+        android:backgroundTint="#FFFFFF"
+        app:cornerRadius="12dp"
+        android:layout_marginBottom="10dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_audio_call"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="📞  Audio Call"
+        android:textColor="@color/black"
+        android:backgroundTint="#FFFFFF"
+        app:strokeColor="#444444"
+        app:strokeWidth="1dp"
+        app:cornerRadius="12dp"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

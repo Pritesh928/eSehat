@@ -3,530 +3,272 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:padding="2dp">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:paddingTop="20dp"
+    android:background="#FFFFFF">
+
+
     <LinearLayout
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
-        <!-- Header Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="32dp">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_profile"
-                />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="  Pritesh Singh"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-
-
-        </LinearLayout>
-
-        <!-- Select Category Section -->
         <TextView
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Consult a Doctor"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/username_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select category"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Category Icons Grid -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="32dp">
-
-            <!-- Pulmonology -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="8dp">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp"
-                    android:backgroundTint="#A8E6CF"
-                    android:layout_marginBottom="8dp">
-
-                    <ImageButton
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/allopathy"
-                        />
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Allopathy"
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
-
-            <!-- Cardiology -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="8dp">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp"
-                    android:backgroundTint="#FFD3B6"
-                    android:layout_marginBottom="8dp">
-
-                    <ImageButton
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_homeopathy"
-                        />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Homeopathy"
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
-
-            <!-- Neurology -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="8dp">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp"
-                    android:backgroundTint="#DCC6E0"
-                    android:layout_marginBottom="8dp">
-
-                    <ImageButton
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_ayurvedic"
-                        />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ayurvedic"
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!-- Select Plan Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select The Expertise"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Doctor Card 1 - James Murphy -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="6dp"
-            android:backgroundTint="#DCA1A1"
-            android:layout_marginBottom="16dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="15dp">
-
-                <!-- Star Rating -->
-                <LinearLayout
-                    android:id="@+id/rating_container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginBottom="8dp">
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/star"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Dr. Ayush Telawane"
-                        android:textSize="16sp"
-                        android:textColor="#2F4A3D"
-                        android:textStyle="bold"
-                        android:layout_marginStart="8dp" />
-
-                </LinearLayout>
-
-                <!-- Doctor Info -->
-                <TextView
-                    android:id="@+id/doctor_title1"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/rating_container"
-                    android:text="Healing minds, transforming live"
-                    android:textSize="18sp"
-                    android:textColor="#2F4A3D"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"
-                    android:lineSpacingExtra="2dp" />
-
-                <TextView
-                    android:id="@+id/price1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/doctor_title1"
-                    android:text=" Get 1:1 health tips "
-                    android:textSize="14sp"
-                    android:textColor="#666666"
-                    android:layout_marginBottom="16dp" />
-
-                <!-- Book Button -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="300dp"
-                    android:layout_below="@id/price1"
-                    android:orientation="horizontal"
-                    android:background="@drawable/edittext"
-                    android:padding="12dp"
-                    android:gravity="center_vertical">
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:background="@drawable/circle_completed"
-                        android:layout_marginEnd="8dp" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Call now"
-                        android:textSize="10dp"
-                        android:backgroundTint="#C68BC34A"
-                        android:textColor="#2F4A3D"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/back"
-                        android:layout_marginStart="8dp"
-                        />
-
-                </LinearLayout>
-
-                <!-- Doctor Image -->
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/doctor_james"
-                    android:scaleX="2"
-                    android:scaleY="2"
-                    />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-        <!-- Doctor Card 1 - James Murphy -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="6dp"
-            android:backgroundTint="#E7F1FB"
-            android:layout_marginBottom="16dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="15dp">
-
-                <!-- Star Rating -->
-                <LinearLayout
-                    android:id="@+id/rating_container2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginBottom="8dp">
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/star"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Dr. Palak Sonanis"
-                        android:textSize="16sp"
-                        android:textColor="#2F4A3D"
-                        android:textStyle="bold"
-                        android:layout_marginStart="8dp" />
-
-                </LinearLayout>
-
-                <!-- Doctor Info -->
-                <TextView
-                    android:id="@+id/doctor_title2"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/rating_container2"
-                    android:text="Caring For you like family"
-                    android:textSize="18sp"
-                    android:textColor="#2F4A3D"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"
-                    android:lineSpacingExtra="2dp" />
-
-                <TextView
-                    android:id="@+id/price2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/doctor_title2"
-                    android:text=" Get 1:1 health tips "
-                    android:textSize="14sp"
-                    android:textColor="#666666"
-                    android:layout_marginBottom="16dp" />
-
-                <!-- Book Button -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="300dp"
-                    android:layout_below="@id/price2"
-                    android:orientation="horizontal"
-                    android:background="@drawable/edittext"
-                    android:padding="12dp"
-                    android:gravity="center_vertical">
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:background="@drawable/circle_completed"
-                        android:layout_marginEnd="8dp" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Call now"
-                        android:textSize="10dp"
-                        android:backgroundTint="#C68BC34A"
-                        android:textColor="#2F4A3D"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/back"
-                        android:layout_marginStart="8dp"
-                        />
-
-                </LinearLayout>
-
-                <!-- Doctor Image -->
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/doctor_lisa"
-                    android:scaleX="1"
-                    android:scaleY="1"
-                    />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-        <!-- Doctor Card 1 - James Murphy -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="6dp"
-            android:backgroundTint="#D9D7C2"
-            android:layout_marginBottom="16dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="15dp">
-
-                <!-- Star Rating -->
-                <LinearLayout
-                    android:id="@+id/rating_container3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginBottom="8dp">
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/star"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Dr. Simran Singh"
-                        android:textSize="16sp"
-                        android:textColor="#2F4A3D"
-                        android:textStyle="bold"
-                        android:layout_marginStart="8dp" />
-
-                </LinearLayout>
-
-                <!-- Doctor Info -->
-                <TextView
-                    android:id="@+id/doctor_title3"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/rating_container3"
-                    android:text="We heal Lives!!"
-                    android:textSize="18sp"
-                    android:textColor="#2F4A3D"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"
-                    android:lineSpacingExtra="2dp" />
-
-                <TextView
-                    android:id="@+id/price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/doctor_title3"
-                    android:text=" Get 1:1 health tips "
-                    android:textSize="14sp"
-                    android:textColor="#666666"
-                    android:layout_marginBottom="16dp" />
-
-                <!-- Book Button -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="300dp"
-                    android:layout_below="@id/price"
-                    android:orientation="horizontal"
-                    android:background="@drawable/edittext"
-                    android:padding="12dp"
-                    android:gravity="center_vertical">
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:background="@drawable/circle_completed"
-                        android:layout_marginEnd="8dp" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Call now"
-                        android:textSize="10dp"
-                        android:backgroundTint="#C68BC34A"
-                        android:textColor="#2F4A3D"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/back"
-                        android:layout_marginStart="8dp"
-                        />
-
-                </LinearLayout>
-
-                <!-- Doctor Image -->
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/doctur"
-                    android:scaleX="2.5"
-                    android:scaleY="2.5"
-                    />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="80dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="80dp" />
+            android:text="Hi, User"
+            android:textColor="#888888"
+            android:textSize="13sp"/>
 
     </LinearLayout>
 
-</ScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_bar"
+        android:layout_above="@id/bottom_nav"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:clipToPadding="false">
 
-    <!-- bottom buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Your Specialist"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp"/>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_doctor1"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#1A1A2E"
+                android:layout_marginBottom="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/doctor_james"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/name1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dr. Ayush Telawane"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/spec1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/name1"
+                        android:text="Mental Health Specialist"
+                        android:textColor="#888888"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tagline1"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/spec1"
+                        android:text="Healing minds, transforming lives"
+                        android:textColor="#AAAAAA"
+                        android:textSize="11sp"
+                        android:layout_marginTop="4dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/call_btn1"
+                        android:layout_width="108dp"
+                        android:layout_height="47dp"
+                        android:layout_below="@id/tagline1"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="#FFFFFF"
+                        android:text="Consult"
+                        android:textColor="#000000"
+                        android:textSize="12sp"
+                        app:cornerRadius="16dp" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_doctor2"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#1E2A1E"
+                android:layout_marginBottom="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/doctor_lisa"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/name2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dr. Palak Sonanis"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/spec2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/name2"
+                        android:text="General Physician"
+                        android:textColor="#888888"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tagline2"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/spec2"
+                        android:text="Caring for you like family"
+                        android:textColor="#AAAAAA"
+                        android:textSize="11sp"
+                        android:layout_marginTop="4dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/call_btn2"
+                        android:layout_width="100dp"
+                        android:layout_height="32dp"
+                        android:layout_below="@id/tagline2"
+                        android:layout_marginTop="8dp"
+                        android:text="Consult"
+                        android:textSize="12sp"
+                        android:textColor="#000000"
+                        android:backgroundTint="#FFFFFF"
+                        app:cornerRadius="16dp"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_doctor3"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#2A1E1E"
+                android:layout_marginBottom="80dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/img3"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/doctur"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/name3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dr. Simran Singh"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/spec3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/name3"
+                        android:text="Pediatric Specialist"
+                        android:textColor="#888888"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tagline3"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/spec3"
+                        android:text="We heal lives!"
+                        android:textColor="#AAAAAA"
+                        android:textSize="11sp"
+                        android:layout_marginTop="4dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/call_btn3"
+                        android:layout_width="100dp"
+                        android:layout_height="32dp"
+                        android:layout_below="@id/tagline3"
+                        android:layout_marginTop="8dp"
+                        android:text="Consult"
+                        android:textSize="12sp"
+                        android:textColor="#000000"
+                        android:backgroundTint="#FFFFFF"
+                        app:cornerRadius="16dp"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+<!--    bottom buttons-->
     <LinearLayout
+        android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
@@ -583,4 +325,5 @@
             android:scaleType="centerInside"/>
 
     </LinearLayout>
+
 </RelativeLayout>

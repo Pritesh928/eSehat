@@ -1,43 +1,92 @@
 package com.firstapp.esehat
 
+import android.app.Dialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.widget.ImageButton
-import androidx.activity.enableEdgeToEdge
+import android.view.Window
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.button.MaterialButton
 
 class VideoConsult : AppCompatActivity() {
+
+
+    private val doctor1Phone = "919619618524"
+    private val doctor2Phone = "917xxxxxxxxx"
+    private val doctor3Phone = "917xxxxxxxxx"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_video_consult)
-        val homeButton : ImageButton = findViewById<ImageButton>(R.id.homebtn)
-        homeButton.setOnClickListener {
-            val intent3 = Intent(this, MainActivity::class.java)
-            startActivity(intent3)
+
+
+        val prefs = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val username = prefs.getString("username", "User")
+        findViewById<TextView>(R.id.username_text).text = "Hi, $username"
+
+
+        findViewById<MaterialButton>(R.id.call_btn1).setOnClickListener {
+            showCallDialog("Dr. Ayush Telawane", doctor1Phone)
         }
-        val healthButton : ImageButton = findViewById<ImageButton>(R.id.healthtrackbtn)
-        healthButton.setOnClickListener {
-            val intent4 = Intent(this, HealthTracker::class.java)
-            startActivity(intent4)
+        findViewById<MaterialButton>(R.id.call_btn2).setOnClickListener {
+            showCallDialog("Dr. Palak Sonanis", doctor2Phone)
         }
-        val videoconsultButton : ImageButton = findViewById<ImageButton>(R.id.videoconsult)
-        videoconsultButton.setOnClickListener {
-            val intent5 = Intent(this, VideoConsult::class.java)
-            startActivity(intent5)
-        }
-        val AIButton : ImageButton = findViewById<ImageButton>(R.id.baymaxAI)
-        AIButton.setOnClickListener {
-            val intent6 = Intent(this, BaymaxAI::class.java)
-            startActivity(intent6)
-        }
-        val profileButton : ImageButton = findViewById<ImageButton>(R.id.profileBtn)
-        profileButton.setOnClickListener {
-            val intent7 = Intent(this, Profilepage::class.java)
-            startActivity(intent7)
+        findViewById<MaterialButton>(R.id.call_btn3).setOnClickListener {
+            showCallDialog("Dr. Simran Dhanwani", doctor3Phone)
         }
 
+        // Bottom nav
+        findViewById<ImageButton>(R.id.homebtn).setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+        findViewById<ImageButton>(R.id.healthtrackbtn).setOnClickListener {
+            startActivity(Intent(this, HealthTracker::class.java))
+        }
+        findViewById<ImageButton>(R.id.videoconsult).setOnClickListener {
+            startActivity(Intent(this, VideoConsult::class.java))
+        }
+        findViewById<ImageButton>(R.id.baymaxAI).setOnClickListener {
+            startActivity(Intent(this, BaymaxAI::class.java))
+        }
+        findViewById<ImageButton>(R.id.profileBtn).setOnClickListener {
+            startActivity(Intent(this, Profilepage::class.java))
+        }
+    }
+
+    private fun showCallDialog(doctorName: String, phone: String) {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_call_options)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        dialog.findViewById<TextView>(R.id.dialog_doctor_name).text = doctorName
+
+        dialog.findViewById<MaterialButton>(R.id.btn_video_call).setOnClickListener {
+
+            val uri = Uri.parse("https://wa.me/$phone")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            intent.setPackage("com.whatsapp")
+            try {
+                startActivity(intent)
+            } catch (e: Exception) {
+                Toast.makeText(this, "WhatsApp not installed", Toast.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
+        }
+
+        dialog.findViewById<MaterialButton>(R.id.btn_audio_call).setOnClickListener {
+
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:+$phone")
+            startActivity(intent)
+            dialog.dismiss()
+        }
+
+        dialog.findViewById<TextView>(R.id.btn_cancel).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }
