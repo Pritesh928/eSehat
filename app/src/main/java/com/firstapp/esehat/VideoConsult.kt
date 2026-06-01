@@ -11,10 +11,10 @@ import com.google.android.material.button.MaterialButton
 
 class VideoConsult : AppCompatActivity() {
 
-
-    private val doctor1Phone = "917276872115"
-    private val doctor2Phone = "919892240434"
-    private val doctor3Phone = "918779560816"
+    //contact_no added to hide actual numbers for security reasons though...
+    private val doctor1Phone = "contact_no"
+    private val doctor2Phone = "contact_no"
+    private val doctor3Phone = "contact_no" 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
