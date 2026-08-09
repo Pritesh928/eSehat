@@ -1,7 +1,9 @@
 package com.firstapp.esehat
 
 import android.Manifest
+import android.app.AlertDialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -25,6 +27,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
 import java.io.FileOutputStream
 import java.net.URLEncoder
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 class BaymaxAI : AppCompatActivity() {
@@ -46,6 +51,11 @@ class BaymaxAI : AppCompatActivity() {
             .build()
     }
 
+    // ---- Local chat storage ----
+    private lateinit var dbHelper: ChatHistoryDbHelper
+    private lateinit var sessionPrefs: SharedPreferences
+    private var currentConversationId: Long = -1
+
     // ---- Voice ----
     private var speechOutputEnabled = false
     private var conversationModeActive = false
@@ -55,6 +65,7 @@ class BaymaxAI : AppCompatActivity() {
     private lateinit var output: TextView
     private lateinit var micButton: ImageButton
     private lateinit var speakerToggle: ImageButton
+    private lateinit var historyButton: ImageButton
 
     companion object {
         private const val REQUEST_RECORD_AUDIO = 1001
@@ -82,11 +93,19 @@ class BaymaxAI : AppCompatActivity() {
         binding = ActivityBaymaxAiBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_baymax_ai)
 
+        dbHelper = ChatHistoryDbHelper(this)
+        sessionPrefs = getSharedPreferences("BaymaxSession", MODE_PRIVATE)
+
         input = findViewById(R.id.chatInput)
         output = findViewById(R.id.chatOutput)
         micButton = findViewById(R.id.micButton)
         speakerToggle = findViewById(R.id.speakerToggle)
+        historyButton = findViewById(R.id.historyButton)
         val sendButton: ImageButton = findViewById(R.id.sendButton)
+
+        // Resume whatever conversation was last open (or start a fresh one on first-ever launch)
+        currentConversationId = resolveConversationId()
+        loadConversationIntoUI(currentConversationId)
 
         sendButton.setOnClickListener {
             val userMessage = input.text.toString().trim()
@@ -96,6 +115,8 @@ class BaymaxAI : AppCompatActivity() {
         }
 
         micButton.setOnClickListener { onMicTapped() }
+
+        historyButton.setOnClickListener { showRecentChatsDialog() }
 
         speakerToggle.setOnClickListener {
             speechOutputEnabled = !speechOutputEnabled
@@ -128,12 +149,91 @@ class BaymaxAI : AppCompatActivity() {
         }
     }
 
+    // ---------------- Local storage: conversation load/switch/create ----------------
+
+    /** Picks which conversation to open: one passed via Intent, else the last one used, else a brand-new one. */
+    private fun resolveConversationId(): Long {
+        val requestedId = intent.getLongExtra("conversation_id", -1L)
+        if (requestedId != -1L) {
+            sessionPrefs.edit().putLong("last_conversation_id", requestedId).apply()
+            return requestedId
+        }
+        val lastId = sessionPrefs.getLong("last_conversation_id", -1L)
+        if (lastId != -1L) return lastId
+
+        val newId = dbHelper.createConversation()
+        sessionPrefs.edit().putLong("last_conversation_id", newId).apply()
+        return newId
+    }
+
+    /** Repopulates the chat view (and in-memory triage state) from what's stored for this conversation. */
+    private fun loadConversationIntoUI(conversationId: Long) {
+        output.text = ""
+        val state = dbHelper.getConversationState(conversationId)
+        facts = state.facts
+        started = state.started
+
+        for (m in dbHelper.getMessages(conversationId)) {
+            val label = if (m.sender == "user") "You" else "Baymax"
+            output.append("\n$label:\n${m.text}\n")
+        }
+    }
+
+    private fun startNewConversation() {
+        val id = dbHelper.createConversation()
+        currentConversationId = id
+        sessionPrefs.edit().putLong("last_conversation_id", id).apply()
+        facts = "{}"
+        started = false
+        output.text = ""
+    }
+
+    private fun openConversation(id: Long) {
+        if (id == currentConversationId) return
+        currentConversationId = id
+        sessionPrefs.edit().putLong("last_conversation_id", id).apply()
+        loadConversationIntoUI(id)
+    }
+
+    private fun showRecentChatsDialog() {
+        val recents = dbHelper.getRecentConversations()
+        val labels = mutableListOf("+  New chat")
+        val ids = mutableListOf(-1L)
+        val fmt = SimpleDateFormat("MMM d, h:mm a", Locale.getDefault())
+
+        for (c in recents) {
+            labels.add("${c.title}\n${fmt.format(Date(c.updatedAt))}")
+            ids.add(c.id)
+        }
+
+        AlertDialog.Builder(this)
+            .setTitle("Recent chats")
+            .setItems(labels.toTypedArray()) { _, which ->
+                if (ids[which] == -1L) startNewConversation() else openConversation(ids[which])
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun maybeSetTitleFromFirstMessage(conversationId: Long, message: String) {
+        if (dbHelper.getMessageCount(conversationId) == 0) {
+            val title = if (message.length > 40) message.take(40) + "…" else message
+            dbHelper.renameConversation(conversationId, title)
+        }
+    }
+
+    // ---------------- Sending messages ----------------
+
     private fun sendMessage(userMessage: String, spokenReply: Boolean = false) {
         output.append("\nYou:\n$userMessage\n")
+        maybeSetTitleFromFirstMessage(currentConversationId, userMessage)
+        dbHelper.appendMessage(currentConversationId, "user", userMessage)
 
         scope.launch {
             val reply = fetchReply(userMessage, output)
             output.append("\nBaymax:\n$reply\n")
+            dbHelper.appendMessage(currentConversationId, "baymax", reply)
+            dbHelper.updateState(currentConversationId, facts, started)
 
             if (spokenReply || speechOutputEnabled) {
                 speak(reply, continueConversation = spokenReply && conversationModeActive)
@@ -226,14 +326,12 @@ class BaymaxAI : AppCompatActivity() {
                 val audioFile = withContext(Dispatchers.IO) { fetchSpeechAudio(text) }
                 playAudio(audioFile, continueConversation)
             } catch (e: Exception) {
-                // Network hiccup or TTS failure — don't break the conversation loop over it.
                 Toast.makeText(this@BaymaxAI, "Couldn't play voice reply", Toast.LENGTH_SHORT).show()
                 if (continueConversation) startListeningRound()
             }
         }
     }
 
-    /** Calls the backend's /tts route and saves the returned WAV bytes to a cache file. */
     private suspend fun fetchSpeechAudio(text: String): File = withContext(Dispatchers.IO) {
         val encoded = URLEncoder.encode(text, "UTF-8")
         val request = Request.Builder()
@@ -274,8 +372,6 @@ class BaymaxAI : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        // Don't stop conversation mode here — launching the speech dialog also triggers onPause,
-        // and we don't want that to cancel the loop. Just silence any audio mid-playback.
         mediaPlayer?.let { if (it.isPlaying) it.stop() }
     }
 
