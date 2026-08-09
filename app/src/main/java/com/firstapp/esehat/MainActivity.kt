@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private val TOTAL_DOTS = 8
 
 
+
     private val medications = mutableListOf(
         Medication(1, "Paracetamol", "After Dinner", "Treats illness and normal fever"),
     )
@@ -112,13 +113,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateGreeting() {
+        val prefs = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val username = prefs.getString("username", "User")
+
         val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         val salutation = when {
             hour < 12 -> "Good morning"
             hour < 17 -> "Good afternoon"
             else      -> "Good evening"
         }
-        tvGreeting.text = "$salutation, Pritesh!"
+        tvGreeting.text = "$salutation, $username!"
     }
 
     private fun updateHeader() {
@@ -159,7 +163,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createMedCard(med: Medication): View {
-        val card = RelativeLayout(this).apply {
+        val card = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -169,17 +175,13 @@ class MainActivity : AppCompatActivity() {
             alpha = if (med.status == MedStatus.SKIPPED) 0.55f else 1f
         }
 
-
         val infoLayout = LinearLayout(this).apply {
-            id = View.generateViewId()
             orientation = LinearLayout.VERTICAL
-            layoutParams = RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-            ).also {
-                it.addRule(RelativeLayout.ALIGN_PARENT_START)
-                it.addRule(RelativeLayout.CENTER_VERTICAL)
-            }
+            layoutParams = LinearLayout.LayoutParams(
+                0, // width = 0, weight fills the rest
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1f
+            )
         }
 
         val tvName = TextView(this).apply {
@@ -202,7 +204,6 @@ class MainActivity : AppCompatActivity() {
             (layoutParams as? LinearLayout.LayoutParams)?.topMargin = dpToPx(2)
         }
 
-
         val tvBadge = TextView(this).apply {
             visibility = if (med.status == MedStatus.PENDING) View.GONE else View.VISIBLE
             when (med.status) {
@@ -220,11 +221,10 @@ class MainActivity : AppCompatActivity() {
             }
             textSize = 11f
             setPadding(dpToPx(8), dpToPx(3), dpToPx(8), dpToPx(3))
-            val margin = LinearLayout.LayoutParams(
+            layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             ).also { it.topMargin = dpToPx(6) }
-            layoutParams = margin
         }
 
         infoLayout.addView(tvName)
@@ -232,17 +232,13 @@ class MainActivity : AppCompatActivity() {
         infoLayout.addView(tvDesc)
         infoLayout.addView(tvBadge)
 
-
         val actionsLayout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             gravity = Gravity.END
-            layoutParams = RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-            ).also {
-                it.addRule(RelativeLayout.ALIGN_PARENT_END)
-                it.addRule(RelativeLayout.CENTER_VERTICAL)
-            }
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).also { it.marginStart = dpToPx(12) }
         }
 
         when (med.status) {

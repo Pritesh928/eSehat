@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -38,11 +39,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".OTPActivity"
-            android:exported="false" />
-        <activity
             android:name=".RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".LoginActivity"
             android:exported="false" />

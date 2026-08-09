@@ -48,6 +48,16 @@
 
         </LinearLayout>
 
+        <!-- Voice output toggle -->
+        <ImageButton
+            android:id="@+id/speakerToggle"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_lock_silent_mode_off"
+            android:contentDescription="Toggle spoken replies"
+            android:scaleType="centerInside"/>
 
         <View
             android:layout_width="8dp"
@@ -115,6 +125,26 @@
         android:paddingBottom="10dp"
         android:background="#FFFFFF">
 
+        <!-- Mic button for voice input -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#00F0F0F0">
+
+            <ImageButton
+                android:id="@+id/micButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_btn_speak_now"
+                android:background="@android:color/transparent"
+                android:layout_gravity="center"
+                android:contentDescription="Speak your symptom"
+                android:scaleType="centerInside"/>
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -131,7 +161,7 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingStart="16dp"
-                android:background="@color/white"
+                android:background="#FFFFFF"
                 android:paddingEnd="8dp">
 
                 <EditText
@@ -139,7 +169,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Are You Feeling Well..."
+                    android:hint="Are You Feeling Well...??"
                     android:inputType="text"
                     android:maxLines="1"
                     android:textColor="@color/black"
