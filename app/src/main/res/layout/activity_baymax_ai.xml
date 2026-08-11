@@ -116,7 +116,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-black"
                 android:lineSpacingExtra="4dp"/>
 
         </LinearLayout>
