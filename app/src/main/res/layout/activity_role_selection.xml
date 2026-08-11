@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Small brand row -->
+
+    <LinearLayout
+        android:id="@+id/brand_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="8dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/baymax"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="eSehat"
+            android:textColor="#111111"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/brand_row"
+        android:layout_above="@id/continueBtnCard"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Who are you?"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#111111"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="28dp"
+                android:text="We'll set up your dashboard accordingly."
+                android:textSize="13sp"
+                android:textColor="#888888"
+                android:gravity="center"/>
+
+            <!-- Row 1: Doctor / Patient -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="14dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_doctor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="7dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
+
+                        <RadioButton
+                            android:id="@+id/radio_doctor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:button="@android:drawable/btn_radio"/>
+
+                        <TextView
+                            android:id="@+id/icon_doctor"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="4dp"
+                            android:text="🩺"
+                            android:textSize="24sp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_doctor"
+                            android:layout_marginTop="12dp"
+                            android:text="Doctor"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111"/>
+
+                        <TextView
+                            android:id="@+id/desc_doctor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_doctor"
+                            android:layout_marginTop="34dp"
+                            android:text="Review patients, consults &amp; prescriptions"
+                            android:textSize="11sp"
+                            android:textColor="#888888"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_patient"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="7dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="#FFFFFF">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
+
+                        <RadioButton
+                            android:id="@+id/radio_patient"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:button="@android:drawable/btn_radio"/>
+
+                        <TextView
+                            android:id="@+id/icon_patient"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="4dp"
+                            android:text="🙂"
+                            android:textSize="24sp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_patient"
+                            android:layout_marginTop="12dp"
+                            android:text="Patient"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111"/>
+
+                        <TextView
+                            android:id="@+id/desc_patient"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_patient"
+                            android:layout_marginTop="34dp"
+                            android:text="Track meds, book consults &amp; ask Baymax"
+                            android:textSize="11sp"
+                            android:textColor="#888888"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <!-- Row 2: Admin / ASHA Worker -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_admin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="7dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="#FFFFFF">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
+
+                        <RadioButton
+                            android:id="@+id/radio_admin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:button="@android:drawable/btn_radio"/>
+
+                        <TextView
+                            android:id="@+id/icon_admin"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="4dp"
+                            android:text="🛠️"
+                            android:textSize="24sp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_admin"
+                            android:layout_marginTop="12dp"
+                            android:text="Admin"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111"/>
+
+                        <TextView
+                            android:id="@+id/desc_admin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_admin"
+                            android:layout_marginTop="34dp"
+                            android:text="Manage users, roles &amp; facilities"
+                            android:textSize="11sp"
+                            android:textColor="#888888"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_asha"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="7dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="#FFFFFF">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
+
+                        <RadioButton
+                            android:id="@+id/radio_asha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:button="@android:drawable/btn_radio"/>
+
+                        <TextView
+                            android:id="@+id/icon_asha"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="4dp"
+
+                            android:text="🤝"
+                            android:textSize="24sp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_asha"
+                            android:layout_marginTop="12dp"
+                            android:text="ASHA Worker"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111"/>
+
+                        <TextView
+                            android:id="@+id/desc_asha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_asha"
+                            android:layout_marginTop="34dp"
+                            android:text="Log field visits &amp; support your community"
+                            android:textSize="11sp"
+                            android:textColor="#888888"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Continue button, pinned to bottom -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/continueBtnCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#58CFFF">
+
+        <TextView
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:gravity="center"
+            android:text="Continue"
+            android:textColor="#F8F8F8"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"/>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
