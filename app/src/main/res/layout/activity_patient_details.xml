@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F5F7F8">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_home"
+                android:background="@android:color/transparent"
+                android:contentDescription="Back"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Patient Details"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#0C1320"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="#FFFFFF">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView android:id="@+id/tv_patient_name" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="Patient Name" android:textSize="23sp" android:textStyle="bold" android:textColor="#0C1320"/>
+                <TextView android:id="@+id/tv_patient_id" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="Patient ID: P001" android:textColor="#667085" android:layout_marginTop="5dp"/>
+                <TextView android:id="@+id/tv_patient_info" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="Age: 28\nGender: Female\nBlood Group: O+" android:textSize="15sp" android:textColor="#344054" android:layout_marginTop="18dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="#FFFFFF">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Medical Summary"
+                    android:textStyle="bold" android:textSize="18sp" android:textColor="#0C1320"/>
+                <TextView android:id="@+id/tv_medical_summary" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="No known allergies. Previous consultation records are shown here." android:textColor="#475467"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <Button android:id="@+id/btn_prescribe" android:layout_width="match_parent" android:layout_height="52dp"
+            android:text="Write Prescription" android:textAllCaps="false" android:textColor="#FFFFFF" android:backgroundTint="#48B88C"/>
+        <Button android:id="@+id/btn_call_patient" android:layout_width="match_parent" android:layout_height="52dp"
+            android:text="Start Consultation" android:textAllCaps="false" android:textColor="#FFFFFF" android:backgroundTint="#0C1320"/>
+
+    </LinearLayout>
+</ScrollView>

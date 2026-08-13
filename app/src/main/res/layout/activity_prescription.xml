@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F5F7F8">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_home"
+                android:background="@android:color/transparent"
+                android:contentDescription="Back"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Write Prescription"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#0C1320"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="#FFFFFF">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Patient"
+                    android:textStyle="bold" android:textColor="#344054"/>
+                <EditText android:id="@+id/et_patient" android:layout_width="match_parent" android:layout_height="52dp"
+                    android:hint="Patient name" android:padding="12dp" android:background="@drawable/edittext"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Medicine"
+                    android:textStyle="bold" android:textColor="#344054" android:layout_marginTop="14dp"/>
+                <EditText android:id="@+id/et_medicine" android:layout_width="match_parent" android:layout_height="52dp"
+                    android:hint="Medicine name" android:padding="12dp" android:background="@drawable/edittext"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dosage and Duration"
+                    android:textStyle="bold" android:textColor="#344054" android:layout_marginTop="14dp"/>
+                <EditText android:id="@+id/et_dosage" android:layout_width="match_parent" android:layout_height="52dp"
+                    android:hint="e.g. 1 tablet twice daily for 5 days" android:padding="12dp" android:background="@drawable/edittext"/>
+                <EditText android:id="@+id/et_notes" android:layout_width="match_parent" android:layout_height="110dp"
+                    android:hint="Doctor notes / instructions" android:gravity="top" android:padding="12dp"
+                    android:background="@drawable/edittext" android:layout_marginTop="14dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <Button android:id="@+id/btn_save_prescription" android:layout_width="match_parent" android:layout_height="52dp"
+            android:text="Save Prescription" android:textAllCaps="false" android:textColor="#FFFFFF" android:backgroundTint="#48B88C"/>
+        <TextView android:id="@+id/tv_saved" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="" android:textColor="#0F6E56" android:textSize="14sp" android:padding="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

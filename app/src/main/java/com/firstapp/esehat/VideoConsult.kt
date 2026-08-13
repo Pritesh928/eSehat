@@ -11,7 +11,6 @@ import com.google.android.material.button.MaterialButton
 
 class VideoConsult : AppCompatActivity() {
 
-    //contact_no added to hide actual numbers for security reasons though...
     private val doctor1Phone = "contact_no"
     private val doctor2Phone = "contact_no"
     private val doctor3Phone = "contact_no" 
@@ -76,10 +75,7 @@ class VideoConsult : AppCompatActivity() {
         }
 
         dialog.findViewById<MaterialButton>(R.id.btn_audio_call).setOnClickListener {
-
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:+$phone")
-            startActivity(intent)
+            val intent = startActivity(Intent(this, LiveCallActivity::class.java))
             dialog.dismiss()
         }
 

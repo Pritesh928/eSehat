@@ -1,0 +1,37 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Soft background circle -->
+    <path
+        android:fillColor="#FDE3EC"
+        android:pathData="M54,4 A50,50 0 1,1 53.99,4 Z"/>
+
+    <!-- Body / kurta -->
+    <path
+        android:fillColor="#E67E22"
+        android:pathData="M32,94 C32,72 41,58 54,58 C67,58 76,72 76,94 Z"/>
+
+    <!-- Head -->
+    <path
+        android:fillColor="#FFD9B3"
+        android:pathData="M54,21 A15,15 0 1,1 53.99,21 Z"/>
+
+    <!-- Bag strap -->
+    <path
+        android:strokeColor="#8D5524"
+        android:strokeWidth="2.5"
+        android:fillColor="#00000000"
+        android:pathData="M45,58 L64,84"/>
+
+    <!-- Bag body -->
+    <path
+        android:fillColor="#8D5524"
+        android:pathData="M56,76 L76,76 A3,3 0 0 1 79,79 L79,90 A3,3 0 0 1 76,93 L56,93 A3,3 0 0 1 53,90 L53,79 A3,3 0 0 1 56,76 Z"/>
+
+    <!-- Health cross on bag -->
+    <path android:fillColor="#FFFFFF" android:pathData="M64.5,81 L67.5,81 L67.5,84 L70.5,84 L70.5,87 L67.5,87 L67.5,90 L64.5,90 L64.5,87 L61.5,87 L61.5,84 L64.5,84 Z"/>
+
+</vector>

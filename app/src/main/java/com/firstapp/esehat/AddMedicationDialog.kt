@@ -2,64 +2,178 @@ package com.firstapp.esehat
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import java.util.Calendar
 
 class AddMedicationDialog(
-    private val onAdd: (name: String, timing: String, desc: String) -> Unit
+    private val onAdd: (
+        String,
+        String,
+        String,
+        Boolean,
+        Int,
+        Int
+    ) -> Unit
 ) : DialogFragment() {
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val context = requireContext()
+    override fun onCreateDialog(
+        savedInstanceState: Bundle?
+    ): Dialog {
 
-        val layout = LinearLayout(context).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(60, 40, 60, 20)
-        }
+        val view =
+            LayoutInflater.from(requireContext())
+                .inflate(
+                    R.layout.dialog_add_medication,
+                    null
+                )
 
-        val etName = EditText(context).apply {
-            hint = "Medication name"
-            inputType = android.text.InputType.TYPE_CLASS_TEXT or
-                    android.text.InputType.TYPE_TEXT_FLAG_CAP_WORDS
-        }
+        val name =
+            view.findViewById<EditText>(
+                R.id.et_med_name
+            )
 
-        val etDesc = EditText(context).apply {
-            hint = "Condition / description"
-            inputType = android.text.InputType.TYPE_CLASS_TEXT
-        }
+        val description =
+            view.findViewById<EditText>(
+                R.id.et_med_description
+            )
 
-        val timings = arrayOf(
-            "Before Breakfast", "After Breakfast",
-            "Before Lunch", "After Lunch",
-            "Before Dinner", "After Dinner", "Bedtime"
+        val time =
+            view.findViewById<TextView>(
+                R.id.tv_selected_time
+            )
+
+        val reminder =
+            view.findViewById<RadioButton>(
+                R.id.rb_reminder
+            )
+
+        val selected =
+            Calendar.getInstance()
+
+        selected.set(
+            Calendar.HOUR_OF_DAY,
+            21
         )
-        val spinner = Spinner(context).apply {
-            adapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, timings)
-            setSelection(5)
+
+        selected.set(
+            Calendar.MINUTE,
+            0
+        )
+
+        time.text =
+            "9:00 PM"
+
+        time.setOnClickListener {
+
+            val picker =
+                android.app.TimePickerDialog(
+                    requireContext(),
+                    { _, hour, minute ->
+
+                        selected.set(
+                            Calendar.HOUR_OF_DAY,
+                            hour
+                        )
+
+                        selected.set(
+                            Calendar.MINUTE,
+                            minute
+                        )
+
+                        time.text =
+                            formatTime(
+                                hour,
+                                minute
+                            )
+                    },
+                    21,
+                    0,
+                    false
+                )
+
+            picker.show()
         }
 
-        layout.addView(etName)
-        layout.addView(Space(context).apply { minimumHeight = 24 })
-        layout.addView(etDesc)
-        layout.addView(Space(context).apply { minimumHeight = 24 })
-        layout.addView(TextView(context).apply { text = "When to take:" })
-        layout.addView(spinner)
-
-        return AlertDialog.Builder(context)
+        return AlertDialog.Builder(
+            requireContext()
+        )
             .setTitle("Add Medication")
-            .setView(layout)
-            .setPositiveButton("Add") { _, _ ->
-                val name = etName.text.toString().trim()
-                val desc = etDesc.text.toString().trim()
-                val timing = spinner.selectedItem.toString()
-                if (name.isNotEmpty()) {
-                    onAdd(name, timing, desc.ifEmpty { "No description" })
-                } else {
-                    Toast.makeText(context, "Please enter a medication name", Toast.LENGTH_SHORT).show()
+            .setView(view)
+            .setNegativeButton(
+                "Cancel",
+                null
+            )
+            .setPositiveButton(
+                "Add"
+            ) { _, _ ->
+
+                val medName =
+                    name.text.toString().trim()
+
+                val desc =
+                    description.text.toString().trim()
+
+                if (medName.isEmpty()) {
+
+                    Toast.makeText(
+                        requireContext(),
+                        "Enter medicine name",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    return@setPositiveButton
                 }
+
+                onAdd(
+                    medName,
+                    formatTime(
+                        selected.get(
+                            Calendar.HOUR_OF_DAY
+                        ),
+                        selected.get(
+                            Calendar.MINUTE
+                        )
+                    ),
+                    if (desc.isEmpty())
+                        "Medication"
+                    else
+                        desc,
+                    reminder.isChecked,
+                    selected.get(
+                        Calendar.HOUR_OF_DAY
+                    ),
+                    selected.get(
+                        Calendar.MINUTE
+                    )
+                )
             }
-            .setNegativeButton("Cancel", null)
             .create()
+    }
+
+    private fun formatTime(
+        hour: Int,
+        minute: Int
+    ): String {
+
+        val suffix =
+            if (hour >= 12) "PM" else "AM"
+
+        val h =
+            when {
+                hour == 0 -> 12
+                hour > 12 -> hour - 12
+                else -> hour
+            }
+
+        return String.format(
+            "%d:%02d %s",
+            h,
+            minute,
+            suffix
+        )
     }
 }

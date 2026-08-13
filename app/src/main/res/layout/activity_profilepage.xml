@@ -88,7 +88,6 @@
                         android:layout_height="100dp"
                         android:layout_centerInParent="true"
                         app:cardCornerRadius="50dp"
-                        app:cardElevation="6dp"
                         app:cardBackgroundColor="#FFFFFF">
 
                         <ImageView

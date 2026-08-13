@@ -17,20 +17,92 @@ class SplashScreen : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_splash_screen)
 
-        sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE)
+        sharedPref = getSharedPreferences(
+            "UserSession",
+            MODE_PRIVATE
+        )
 
         Handler(Looper.getMainLooper()).postDelayed({
             checkUserStatus()
-        }, 3000)
+        }, 1500)
     }
 
     private fun checkUserStatus() {
-        val isLoggedIn = sharedPref.getBoolean("isLoggedIn", false)
-        if (isLoggedIn) {
-            startActivity(Intent(this, MainActivity::class.java))
-        } else {
-            startActivity(Intent(this, RegisterActivity::class.java))
+
+        val isLoggedIn =
+            sharedPref.getBoolean(
+                "isLoggedIn",
+                false
+            )
+
+        if (!isLoggedIn) {
+
+            startActivity(
+                Intent(
+                    this,
+                    RegisterActivity::class.java
+                )
+            )
+
+            finish()
+            return
         }
+
+        val savedRole =
+            sharedPref.getString(
+                "userRole",
+                null
+            )
+
+        if (savedRole.isNullOrEmpty()) {
+
+            startActivity(
+                Intent(
+                    this,
+                    RoleSelection::class.java
+                )
+            )
+
+            finish()
+            return
+        }
+
+        openDashboard(savedRole)
+    }
+
+    private fun openDashboard(role: String) {
+
+        val target =
+            when (role) {
+
+                UserRole.DOCTOR.name ->
+                    DoctorDashboard::class.java
+
+                UserRole.PATIENT.name ->
+                    MainActivity::class.java
+
+                UserRole.ADMIN.name ->
+                    AdminDashboardActivity::class.java
+
+                UserRole.ASHA_WORKER.name ->
+                    AshaDashboardActivity::class.java
+
+                else -> {
+                    RoleSelection::class.java
+                }
+            }
+
+        val intent =
+            Intent(
+                this,
+                target
+            )
+
+        intent.flags =
+            Intent.FLAG_ACTIVITY_NEW_TASK or
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+        startActivity(intent)
         finish()
     }
 }

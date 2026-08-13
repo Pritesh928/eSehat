@@ -1,0 +1,28 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Soft background circle -->
+    <path
+        android:fillColor="#FFF0DC"
+        android:pathData="M54,4 A50,50 0 1,1 53.99,4 Z"/>
+
+    <!-- Body / suit -->
+    <path
+        android:fillColor="#34495E"
+        android:pathData="M32,94 C32,72 41,58 54,58 C67,58 76,72 76,94 Z"/>
+
+    <!-- Collar -->
+    <path android:fillColor="#FFFFFF" android:pathData="M48,58 L60,58 L54,66 Z"/>
+
+    <!-- Head -->
+    <path
+        android:fillColor="#FFD9B3"
+        android:pathData="M54,21 A15,15 0 1,1 53.99,21 Z"/>
+
+    <!-- Necktie -->
+    <path android:fillColor="#D32F2F" android:pathData="M51,60 L57,60 L55,68 L59,86 L54,92 L49,86 L53,68 Z"/>
+
+</vector>

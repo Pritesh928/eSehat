@@ -20,7 +20,7 @@
             android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Consult a Doctor"
+            android:text="Voice Call Consult"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -78,7 +78,7 @@
                         android:id="@+id/name1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dr. Ayush Telawane"
+                        android:text="Dr. Arolkar "
                         android:textColor="#FFFFFF"
                         android:textSize="15sp"
                         android:textStyle="bold"/>
@@ -137,7 +137,7 @@
                         android:id="@+id/name2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dr. Soham Suvarna"
+                        android:text="Dr. Dalvi"
                         android:textColor="#FFFFFF"
                         android:textSize="15sp"
                         android:textStyle="bold"/>
@@ -196,7 +196,7 @@
                         android:id="@+id/name3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dr. Dishant Soyam"
+                        android:text="Dr. Chavan"
                         android:textColor="#FFFFFF"
                         android:textSize="15sp"
                         android:textStyle="bold"/>

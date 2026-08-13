@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medicine name"
+        android:textColor="#222222"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="6dp"/>
+
+    <EditText
+        android:id="@+id/et_med_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="e.g. Paracetamol"
+        android:padding="12dp"
+        android:background="@drawable/input_bg"
+        android:singleLine="true"
+        android:inputType="textCapSentences"
+        android:layout_marginBottom="14dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textColor="#222222"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="6dp"/>
+
+    <EditText
+        android:id="@+id/et_med_description"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="e.g. After dinner"
+        android:padding="12dp"
+        android:background="@drawable/input_bg"
+        android:singleLine="true"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:textColor="#222222"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="6dp"/>
+
+    <TextView
+        android:id="@+id/tv_selected_time"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:text="9:00 PM"
+        android:textColor="#111111"
+        android:textSize="16sp"
+        android:background="@drawable/input_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="14dp"/>
+
+    <RadioButton
+        android:id="@+id/rb_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enable reminder"
+        android:textSize="14sp"
+        android:textColor="#222222"
+        android:checked="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You'll receive a notification with Take and Skip actions."
+        android:textColor="#777777"
+        android:textSize="12sp"
+        android:paddingStart="32dp"
+        android:paddingBottom="4dp"/>
+
+</LinearLayout>

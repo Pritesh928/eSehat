@@ -1,0 +1,36 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Soft background circle -->
+    <path
+        android:fillColor="#DCEEFF"
+        android:pathData="M54,4 A50,50 0 1,1 53.99,4 Z"/>
+
+    <!-- Body / scrubs -->
+    <path
+        android:fillColor="#4FB6C4"
+        android:pathData="M32,94 C32,72 41,58 54,58 C67,58 76,72 76,94 Z"/>
+
+    <!-- Head -->
+    <path
+        android:fillColor="#FFD9B3"
+        android:pathData="M54,21 A15,15 0 1,1 53.99,21 Z"/>
+
+    <!-- Stethoscope tube -->
+    <path
+        android:strokeColor="#2E7D32"
+        android:strokeWidth="3"
+        android:fillColor="#00000000"
+        android:pathData="M40,62 C40,76 47,82 54,82 C61,82 68,76 68,62"/>
+
+    <!-- Stethoscope ear tips -->
+    <path android:fillColor="#2E7D32" android:pathData="M40,62 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"/>
+    <path android:fillColor="#2E7D32" android:pathData="M68,62 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"/>
+
+    <!-- Stethoscope chest piece -->
+    <path android:fillColor="#2E7D32" android:pathData="M54,82 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0"/>
+
+</vector>

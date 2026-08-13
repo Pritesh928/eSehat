@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,15 +15,33 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.ESehat"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".LiveCallActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FollowUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PatientsRecordsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrescriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PatientDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Appointments"
+            android:exported="false" />
+        <activity
             android:name=".AshaDashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminDashboard"
+            android:name=".AdminDashboardActivity"
             android:exported="false" />
         <activity
             android:name=".DoctorDashboard"
@@ -60,6 +82,13 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <receiver
+            android:name=".MedicationReminderReceiver"
+            android:exported="false"/>
+
+        <receiver
+            android:name=".MedicationActionReciever"
+            android:exported="false"/>
     </application>
 
 </manifest>

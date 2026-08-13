@@ -8,7 +8,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 
-enum class UserRole { DOCTOR, PATIENT, ADMIN, ASHA_WORKER }
+enum class UserRole {
+    DOCTOR,
+    PATIENT,
+    ADMIN,
+    ASHA_WORKER
+}
 
 class RoleSelection : AppCompatActivity() {
 
@@ -21,63 +26,145 @@ class RoleSelection : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_role_selection)
+
+        setContentView(
+            R.layout.activity_role_selection
+        )
 
         cards = mapOf(
-            UserRole.DOCTOR to findViewById(R.id.card_doctor),
-            UserRole.PATIENT to findViewById(R.id.card_patient),
-            UserRole.ADMIN to findViewById(R.id.card_admin),
-            UserRole.ASHA_WORKER to findViewById(R.id.card_asha)
+            UserRole.DOCTOR to
+                    findViewById(R.id.card_doctor),
+
+            UserRole.PATIENT to
+                    findViewById(R.id.card_patient),
+
+            UserRole.ADMIN to
+                    findViewById(R.id.card_admin),
+
+            UserRole.ASHA_WORKER to
+                    findViewById(R.id.card_asha)
         )
+
         radios = mapOf(
-            UserRole.DOCTOR to findViewById(R.id.radio_doctor),
-            UserRole.PATIENT to findViewById(R.id.radio_patient),
-            UserRole.ADMIN to findViewById(R.id.radio_admin),
-            UserRole.ASHA_WORKER to findViewById(R.id.radio_asha)
+            UserRole.DOCTOR to
+                    findViewById(R.id.radio_doctor),
+
+            UserRole.PATIENT to
+                    findViewById(R.id.radio_patient),
+
+            UserRole.ADMIN to
+                    findViewById(R.id.radio_admin),
+
+            UserRole.ASHA_WORKER to
+                    findViewById(R.id.radio_asha)
         )
-        continueBtnCard = findViewById(R.id.continueBtnCard)
-        btnContinue = findViewById(R.id.btnContinue)
+
+        continueBtnCard =
+            findViewById(
+                R.id.continueBtnCard
+            )
+
+        btnContinue =
+            findViewById(
+                R.id.btnContinue
+            )
 
         cards.forEach { (role, card) ->
-            card.setOnClickListener { selectRole(role) }
+
+            card.setOnClickListener {
+                selectRole(role)
+            }
         }
 
         btnContinue.setOnClickListener {
-            selectedRole?.let { role -> goToDashboard(role) }
+
+            selectedRole?.let { role ->
+                goToDashboard(role)
+            }
         }
 
         updateContinueButtonState()
     }
 
-    private fun selectRole(role: UserRole) {
+    private fun selectRole(
+        role: UserRole
+    ) {
+
         selectedRole = role
-        radios.forEach { (r, radioButton) -> radioButton.isChecked = (r == role) }
+
+        radios.forEach { (r, radioButton) ->
+
+            radioButton.isChecked =
+                r == role
+        }
+
         updateContinueButtonState()
     }
 
     private fun updateContinueButtonState() {
-        val enabled = selectedRole != null
+
+        val enabled =
+            selectedRole != null
+
         continueBtnCard.setCardBackgroundColor(
-            Color.parseColor(if (enabled) "#2E7D32" else "#CCCCCC")
+            Color.parseColor(
+                if (enabled)
+                    "#2E7D32"
+                else
+                    "#CCCCCC"
+            )
         )
-        btnContinue.isEnabled = enabled
+
+        btnContinue.isEnabled =
+            enabled
     }
 
-    private fun goToDashboard(role: UserRole) {
-        getSharedPreferences("UserSession", MODE_PRIVATE)
+    private fun goToDashboard(
+        role: UserRole
+    ) {
+
+        getSharedPreferences(
+            "UserSession",
+            MODE_PRIVATE
+        )
             .edit()
-            .putString("userRole", role.name)
+            .putString(
+                "userRole",
+                role.name
+            )
+            .putBoolean(
+                "isLoggedIn",
+                true
+            )
             .apply()
 
-        val target = when (role) {
-            UserRole.DOCTOR -> DoctorDashboard::class.java
-            UserRole.PATIENT -> MainActivity::class.java
-            UserRole.ADMIN -> AdminDashboard::class.java
-            UserRole.ASHA_WORKER -> AshaDashboardActivity::class.java
-        }
+        val target =
+            when (role) {
 
-        val intent = Intent(this, target)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                UserRole.DOCTOR ->
+                    DoctorDashboard::class.java
+
+                UserRole.PATIENT ->
+                    MainActivity::class.java
+
+                UserRole.ADMIN ->
+                    AdminDashboardActivity::class.java
+
+                UserRole.ASHA_WORKER ->
+                    AshaDashboardActivity::class.java
+            }
+
+        val intent =
+            Intent(
+                this,
+                target
+            )
+
+        intent.flags =
+            Intent.FLAG_ACTIVITY_NEW_TASK or
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK
+
         startActivity(intent)
+        finish()
     }
 }

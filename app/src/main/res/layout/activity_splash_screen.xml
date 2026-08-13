@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/baymax"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:src="@drawable/baymax"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="eSehat"
         android:textColor="@color/black"
         android:textSize="35dp"
@@ -46,8 +46,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/baymax"
-        app:layout_constraintVertical_bias="0.632" />
-
+        app:layout_constraintVertical_bias="0.819" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

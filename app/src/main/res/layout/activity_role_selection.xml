@@ -6,7 +6,6 @@
     android:background="#FFFFFF">
 
     <!-- Small brand row -->
-
     <LinearLayout
         android:id="@+id/brand_row"
         android:layout_width="match_parent"
@@ -26,8 +25,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/baymax"
-            android:textSize="20sp" />
+            android:src="@drawable/baymax"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,7 +33,7 @@
             android:text="eSehat"
             android:textColor="#111111"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
@@ -53,13 +51,13 @@
             android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:paddingTop="20dp"
+            android:paddingTop="100dp"
             android:paddingBottom="24dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Who are you?"
+                android:text="Tell Us About Yourself?"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="#111111"
@@ -92,7 +90,8 @@
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="#FFFFFF">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -108,20 +107,19 @@
                             android:focusable="false"
                             android:button="@android:drawable/btn_radio"/>
 
-                        <TextView
+                        <ImageView
                             android:id="@+id/icon_doctor"
-                            android:layout_width="52dp"
-                            android:layout_height="52dp"
-                            android:layout_marginTop="4dp"
-                            android:text="🩺"
-                            android:textSize="24sp"
-                            android:gravity="center"/>
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_marginTop="2dp"
+                            android:src="@drawable/doc_ic"
+                            android:contentDescription="Doctor"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/icon_doctor"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="10dp"
                             android:text="Doctor"
                             android:textSize="15sp"
                             android:textStyle="bold"
@@ -132,7 +130,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/icon_doctor"
-                            android:layout_marginTop="34dp"
+                            android:layout_marginTop="32dp"
                             android:text="Review patients, consults &amp; prescriptions"
                             android:textSize="11sp"
                             android:textColor="#888888"/>
@@ -167,20 +165,19 @@
                             android:focusable="false"
                             android:button="@android:drawable/btn_radio"/>
 
-                        <TextView
+                        <ImageView
                             android:id="@+id/icon_patient"
-                            android:layout_width="52dp"
-                            android:layout_height="52dp"
-                            android:layout_marginTop="4dp"
-                            android:text="🙂"
-                            android:textSize="24sp"
-                            android:gravity="center"/>
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_marginTop="2dp"
+                            android:src="@drawable/patient_ic"
+                            android:contentDescription="Patient"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/icon_patient"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="10dp"
                             android:text="Patient"
                             android:textSize="15sp"
                             android:textStyle="bold"
@@ -191,7 +188,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/icon_patient"
-                            android:layout_marginTop="34dp"
+                            android:layout_marginTop="32dp"
                             android:text="Track meds, book consults &amp; ask Baymax"
                             android:textSize="11sp"
                             android:textColor="#888888"/>
@@ -234,20 +231,19 @@
                             android:focusable="false"
                             android:button="@android:drawable/btn_radio"/>
 
-                        <TextView
+                        <ImageView
                             android:id="@+id/icon_admin"
-                            android:layout_width="52dp"
-                            android:layout_height="52dp"
-                            android:layout_marginTop="4dp"
-                            android:text="🛠️"
-                            android:textSize="24sp"
-                            android:gravity="center"/>
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_marginTop="2dp"
+                            android:src="@drawable/admin_ic"
+                            android:contentDescription="Admin"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/icon_admin"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="10dp"
                             android:text="Admin"
                             android:textSize="15sp"
                             android:textStyle="bold"
@@ -258,7 +254,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/icon_admin"
-                            android:layout_marginTop="34dp"
+                            android:layout_marginTop="32dp"
                             android:text="Manage users, roles &amp; facilities"
                             android:textSize="11sp"
                             android:textColor="#888888"/>
@@ -293,21 +289,19 @@
                             android:focusable="false"
                             android:button="@android:drawable/btn_radio"/>
 
-                        <TextView
+                        <ImageView
                             android:id="@+id/icon_asha"
-                            android:layout_width="52dp"
-                            android:layout_height="52dp"
-                            android:layout_marginTop="4dp"
-
-                            android:text="🤝"
-                            android:textSize="24sp"
-                            android:gravity="center"/>
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_marginTop="2dp"
+                            android:src="@drawable/asha_ic"
+                            android:contentDescription="ASHA Worker"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/icon_asha"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="10dp"
                             android:text="ASHA Worker"
                             android:textSize="15sp"
                             android:textStyle="bold"
@@ -318,7 +312,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/icon_asha"
-                            android:layout_marginTop="34dp"
+                            android:layout_marginTop="32dp"
                             android:text="Log field visits &amp; support your community"
                             android:textSize="11sp"
                             android:textColor="#888888"/>

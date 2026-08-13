@@ -1,0 +1,25 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Soft background circle -->
+    <path
+        android:fillColor="#E1F5E9"
+        android:pathData="M54,4 A50,50 0 1,1 53.99,4 Z"/>
+
+    <!-- Body / shirt -->
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M32,94 C32,72 41,58 54,58 C67,58 76,72 76,94 Z"/>
+
+    <!-- Head -->
+    <path
+        android:fillColor="#FFD9B3"
+        android:pathData="M54,21 A15,15 0 1,1 53.99,21 Z"/>
+
+    <!-- Small medical cross on chest -->
+    <path android:fillColor="#E53935" android:pathData="M52,71 L56,71 L56,75 L60,75 L60,79 L56,79 L56,83 L52,83 L52,79 L48,79 L48,75 L52,75 Z"/>
+
+</vector>

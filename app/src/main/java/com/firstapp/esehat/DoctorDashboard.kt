@@ -62,7 +62,7 @@ class DoctorDashboard : AppCompatActivity() {
             startActivity(Intent(this, PrescriptionActivity::class.java))
         }
         findViewById<androidx.cardview.widget.CardView>(R.id.action_patient_records).setOnClickListener {
-            startActivity(Intent(this, PatientRecordsActivity::class.java))
+            startActivity(Intent(this, PatientsRecordsActivity::class.java))
         }
         findViewById<androidx.cardview.widget.CardView>(R.id.action_follow_ups).setOnClickListener {
             startActivity(Intent(this, FollowUpActivity::class.java))
@@ -73,13 +73,13 @@ class DoctorDashboard : AppCompatActivity() {
         findViewById<ImageButton>(R.id.nav_home).isEnabled = false // already here
 
         findViewById<ImageButton>(R.id.nav_appointments).setOnClickListener {
-            startActivity(Intent(this, AppointmentsActivity::class.java))
+            startActivity(Intent(this, Appointments::class.java))
         }
         findViewById<ImageButton>(R.id.nav_consult).setOnClickListener {
             startActivity(Intent(this, VideoConsult::class.java))
         }
         findViewById<ImageButton>(R.id.nav_patients).setOnClickListener {
-            startActivity(Intent(this, PatientRecordsActivity::class.java))
+            startActivity(Intent(this, PatientsRecordsActivity::class.java))
         }
         findViewById<ImageButton>(R.id.nav_profile).setOnClickListener {
             // Reusing the existing patient Profilepage — split this into a dedicated

@@ -43,7 +43,7 @@
         android:id="@+id/btn_video_call"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="Video Call via WhatsApp"
+        android:text="Video Call"
         android:textColor="#000000"
         android:backgroundTint="#5DF8F8F8"
         app:cornerRadius="12dp"
