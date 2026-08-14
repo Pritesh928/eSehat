@@ -55,9 +55,9 @@
             android:layout_height="32dp"
             android:layout_marginEnd="8dp"
             android:background="@android:color/transparent"
-            android:src="@android:drawable/ic_menu_recent_history"
             android:contentDescription="Recent chats"
-            android:scaleType="centerInside"/>
+            android:scaleType="centerInside"
+            android:src="@android:drawable/ic_menu_recent_history"/>
 
         <!-- Voice output toggle -->
         <ImageButton
@@ -104,23 +104,14 @@
         android:paddingTop="12dp"
         android:clipToPadding="false">
 
+        <!-- Message bubbles are added here at runtime, one row per message -->
         <LinearLayout
-            android:id="@+id/suggestion_container"
+            android:id="@+id/messagesContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="12dp">
+            android:paddingBottom="12dp"/>
 
-            <TextView
-                android:id="@+id/chatOutput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:fontFamily="sans-serif-black"
-                android:lineSpacingExtra="4dp"/>
-
-        </LinearLayout>
     </ScrollView>
 
 
