@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.widget.ImageViewCompat
 import androidx.core.content.ContextCompat
+import android.app.Activity
+import android.graphics.Bitmap
+import androidx.activity.result.contract.ActivityResultContracts
 
 class Profilepage : AppCompatActivity() {
 
@@ -31,15 +34,25 @@ class Profilepage : AppCompatActivity() {
         }
 
         findViewById<LinearLayout>(R.id.btnNotifications).setOnClickListener {
-            Toast.makeText(this, "Notification settings — coming soon", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, HelplineCallActivity::class.java))
         }
 
         findViewById<LinearLayout>(R.id.btnPrivacy).setOnClickListener {
-            Toast.makeText(this, "Privacy & Security — coming soon", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, HealthTracker::class.java))
         }
 
         findViewById<CardView>(R.id.editPhotoBadge).setOnClickListener {
-            Toast.makeText(this, "Photo upload — coming soon", Toast.LENGTH_SHORT).show()
+            val startCameraLauncher = registerForActivityResult(
+                ActivityResultContracts.StartActivityForResult()
+            ) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    // Get the low-resolution thumbnail bitmap from the intent extras
+                    val imageBitmap = result.data?.extras?.get("data") as? Bitmap
+
+                    // Do something with the bitmap (e.g., display it in an ImageView)
+                    // myImageView.setImageBitmap(imageBitmap)
+                }
+            }
         }
 
         findViewById<LinearLayout>(R.id.logoutBtn).setOnClickListener {

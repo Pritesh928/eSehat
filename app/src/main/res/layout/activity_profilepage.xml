@@ -9,7 +9,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_nav"
         android:overScrollMode="never">
 
         <LinearLayout
@@ -127,7 +126,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Account"
+                android:text="Services"
                 android:textSize="13sp"
                 android:textColor="#222222"
                 android:textAllCaps="true"
@@ -224,7 +223,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="🔔"
+                                android:text="📲"
                                 android:textSize="16sp"
                                 android:gravity="center"/>
                         </androidx.cardview.widget.CardView>
@@ -234,14 +233,14 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_marginStart="14dp"
-                            android:text="Notifications"
+                            android:text="IVR Service"
                             android:textSize="15sp"
                             android:textColor="#222222"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="›"
+                            android:text=""
                             android:textSize="20sp"
                             android:textColor="#CCCCCC"/>
 
@@ -275,7 +274,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="🔒"
+                                android:text="➕"
                                 android:textSize="16sp"
                                 android:gravity="center"/>
                         </androidx.cardview.widget.CardView>
@@ -285,7 +284,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_marginStart="14dp"
-                            android:text="Privacy &amp; Security"
+                            android:text="Talk a Chemist"
                             android:textSize="15sp"
                             android:textColor="#222222"/>
 

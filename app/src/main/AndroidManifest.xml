@@ -4,10 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+
 
     <application
         android:allowBackup="true"
@@ -19,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ESehat"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".HelplineCallActivity"
+            android:exported="false" />
         <activity
             android:name=".LiveCallActivity"
             android:exported="false" />
@@ -82,13 +87,13 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-        <receiver
-            android:name=".MedicationReminderReceiver"
-            android:exported="false"/>
 
         <receiver
+            android:name=".MedicationReminderReceiver"
+            android:exported="false" />
+        <receiver
             android:name=".MedicationActionReciever"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

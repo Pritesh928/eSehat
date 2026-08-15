@@ -4,17 +4,24 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.*
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.media.MediaPlayer
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import android.view.Gravity
+import android.view.View
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -73,10 +80,13 @@ class BaymaxAI : AppCompatActivity() {
     private var mediaPlayer: MediaPlayer? = null
 
     private lateinit var input: EditText
-    private lateinit var output: TextView
+    private lateinit var messagesContainer: LinearLayout
+    private lateinit var chatScrollView: ScrollView
     private lateinit var micButton: ImageButton
     private lateinit var speakerToggle: ImageButton
     private lateinit var historyButton: ImageButton
+
+    private var typingJob: Job? = null
 
     companion object {
         private const val REQUEST_RECORD_AUDIO = 1001
@@ -134,7 +144,8 @@ class BaymaxAI : AppCompatActivity() {
             )
 
         input = findViewById(R.id.chatInput)
-        output = findViewById(R.id.chatOutput)
+        messagesContainer = findViewById(R.id.messagesContainer)
+        chatScrollView = findViewById(R.id.chatScrollView)
         micButton = findViewById(R.id.micButton)
         speakerToggle = findViewById(R.id.speakerToggle)
         historyButton = findViewById(R.id.historyButton)
@@ -235,6 +246,117 @@ class BaymaxAI : AppCompatActivity() {
             }
     }
 
+    // ---------------- Chat bubbles ----------------
+
+    private fun addUserBubble(text: String) {
+        val row = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.END
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).also { it.bottomMargin = dpToPx(10) }
+        }
+
+        val bubble = TextView(this).apply {
+            this.text = text
+            setTextColor(Color.WHITE)
+            textSize = 14f
+            maxWidth = dpToPx(260)
+            setPadding(dpToPx(14), dpToPx(10), dpToPx(14), dpToPx(10))
+            background = GradientDrawable().apply {
+                setColor(Color.parseColor("#1E1E1E"))
+                cornerRadius = dpToPx(16).toFloat()
+            }
+        }
+
+        row.addView(bubble)
+        messagesContainer.addView(row)
+        scrollToBottom()
+    }
+
+    private fun addBotBubble(text: String) {
+        val row = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.START
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).also { it.bottomMargin = dpToPx(10) }
+        }
+
+        val bubble = TextView(this).apply {
+            this.text = text
+            setTextColor(Color.BLACK)
+            textSize = 14f
+            maxWidth = dpToPx(260)
+            setPadding(dpToPx(14), dpToPx(10), dpToPx(14), dpToPx(10))
+            background = GradientDrawable().apply {
+                setColor(Color.parseColor("#F0F0F0"))
+                cornerRadius = dpToPx(16).toFloat()
+            }
+        }
+
+        row.addView(bubble)
+        messagesContainer.addView(row)
+        scrollToBottom()
+    }
+
+    /** Adds an animated "Baymax is typing…" bubble and returns its row so it can be removed later. */
+    private fun addTypingBubble(): View {
+        val row = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.START
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).also { it.bottomMargin = dpToPx(10) }
+        }
+
+        val bubble = TextView(this).apply {
+            text = "Baymax is typing"
+            setTextColor(Color.parseColor("#777777"))
+            textSize = 14f
+            setPadding(dpToPx(14), dpToPx(10), dpToPx(14), dpToPx(10))
+            background = GradientDrawable().apply {
+                setColor(Color.parseColor("#F0F0F0"))
+                cornerRadius = dpToPx(16).toFloat()
+            }
+        }
+
+        row.addView(bubble)
+        messagesContainer.addView(row)
+        scrollToBottom()
+
+        typingJob = scope.launch {
+            var dots = 0
+            while (isActive) {
+                bubble.text = "Baymax is typing" + ".".repeat(dots % 4)
+                dots++
+                delay(400)
+            }
+        }
+
+        return row
+    }
+
+    private fun removeTypingBubble(row: View) {
+        typingJob?.cancel()
+        typingJob = null
+        messagesContainer.removeView(row)
+    }
+
+    private fun scrollToBottom() {
+        chatScrollView.post {
+            chatScrollView.fullScroll(View.FOCUS_DOWN)
+        }
+    }
+
+    private fun dpToPx(dp: Int): Int = (dp * resources.displayMetrics.density).toInt()
+
+    // ---------------- Network monitoring (unchanged) ----------------
+
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun setupNetworkMonitoring() {
 
         connectivityManager =
@@ -320,6 +442,8 @@ class BaymaxAI : AppCompatActivity() {
         ).show()
     }
 
+    // ---------------- Local storage: conversation load/switch/create ----------------
+
     private fun resolveConversationId(): Long {
 
         val requestedId =
@@ -366,7 +490,7 @@ class BaymaxAI : AppCompatActivity() {
         conversationId: Long
     ) {
 
-        output.text = ""
+        messagesContainer.removeAllViews()
 
         val state =
             dbHelper.getConversationState(
@@ -377,16 +501,7 @@ class BaymaxAI : AppCompatActivity() {
         started = state.started
 
         for (m in dbHelper.getMessages(conversationId)) {
-
-            val label =
-                if (m.sender == "user")
-                    "You"
-                else
-                    "Baymax"
-
-            output.append(
-                "\n$label:\n${m.text}\n"
-            )
+            if (m.sender == "user") addUserBubble(m.text) else addBotBubble(m.text)
         }
     }
 
@@ -407,7 +522,7 @@ class BaymaxAI : AppCompatActivity() {
         facts = "{}"
         started = false
 
-        output.text = ""
+        messagesContainer.removeAllViews()
     }
 
     private fun openConversation(id: Long) {
@@ -427,48 +542,94 @@ class BaymaxAI : AppCompatActivity() {
         loadConversationIntoUI(id)
     }
 
+    /** Styled "Recent Chats" dialog — a scrollable list of card rows instead of a plain text list. */
     private fun showRecentChatsDialog() {
 
-        val recents =
-            dbHelper.getRecentConversations()
+        val recents = dbHelper.getRecentConversations()
+        val fmt = SimpleDateFormat("MMM d, h:mm a", Locale.getDefault())
 
-        val labels =
-            mutableListOf("+  New chat")
-
-        val ids =
-            mutableListOf(-1L)
-
-        val fmt =
-            SimpleDateFormat(
-                "MMM d, h:mm a",
-                Locale.getDefault()
-            )
-
-        for (c in recents) {
-
-            labels.add(
-                "${c.title}\n${fmt.format(Date(c.updatedAt))}"
-            )
-
-            ids.add(c.id)
+        val container = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(4))
         }
 
-        AlertDialog.Builder(this)
-            .setTitle("Recent chats")
-            .setItems(
-                labels.toTypedArray()
-            ) { _, which ->
+        lateinit var dialog: AlertDialog
 
-                if (ids[which] == -1L)
-                    startNewConversation()
-                else
-                    openConversation(ids[which])
+        fun addRow(icon: String, title: String, subtitle: String?, accentColor: String, onClick: () -> Unit) {
+            val row = LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
+                gravity = Gravity.CENTER_VERTICAL
+                isClickable = true
+                isFocusable = true
+                background = GradientDrawable().apply {
+                    setColor(Color.parseColor("#F7F7F7"))
+                    cornerRadius = dpToPx(14).toFloat()
+                }
+                setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12))
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).also { it.bottomMargin = dpToPx(8) }
             }
-            .setNegativeButton(
-                "Cancel",
-                null
-            )
-            .show()
+
+            val iconBadge = TextView(this).apply {
+                text = icon
+                textSize = 18f
+                gravity = Gravity.CENTER
+                layoutParams = LinearLayout.LayoutParams(dpToPx(40), dpToPx(40)).also {
+                    it.marginEnd = dpToPx(12)
+                }
+                background = GradientDrawable().apply {
+                    setColor(Color.parseColor(accentColor))
+                    cornerRadius = dpToPx(12).toFloat()
+                }
+            }
+
+            val textCol = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+            }
+
+            textCol.addView(TextView(this).apply {
+                text = title
+                textSize = 14f
+                setTextColor(Color.parseColor("#111111"))
+                setTypeface(typeface, Typeface.BOLD)
+                maxLines = 1
+            })
+
+            if (subtitle != null) {
+                textCol.addView(TextView(this).apply {
+                    text = subtitle
+                    textSize = 11f
+                    setTextColor(Color.parseColor("#888888"))
+                })
+            }
+
+            row.addView(iconBadge)
+            row.addView(textCol)
+            row.setOnClickListener {
+                onClick()
+                dialog.dismiss()
+            }
+            container.addView(row)
+        }
+
+        addRow("➕", "New chat", null, "#DFF5E1") { startNewConversation() }
+
+        for (c in recents) {
+            addRow("💬", c.title, fmt.format(Date(c.updatedAt)), "#E3F2FD") { openConversation(c.id) }
+        }
+
+        val scrollWrapper = ScrollView(this).apply { addView(container) }
+
+        dialog = AlertDialog.Builder(this)
+            .setTitle("Recent Chats")
+            .setView(scrollWrapper)
+            .setNegativeButton("Close", null)
+            .create()
+
+        dialog.show()
     }
 
     private fun maybeSetTitleFromFirstMessage(
@@ -495,14 +656,14 @@ class BaymaxAI : AppCompatActivity() {
         }
     }
 
+    // ---------------- Sending messages ----------------
+
     private fun sendMessage(
         userMessage: String,
         spokenReply: Boolean = false
     ) {
 
-        output.append(
-            "\nYou:\n$userMessage\n"
-        )
+        addUserBubble(userMessage)
 
         maybeSetTitleFromFirstMessage(
             currentConversationId,
@@ -514,6 +675,8 @@ class BaymaxAI : AppCompatActivity() {
             "user",
             userMessage
         )
+
+        val typingRow = addTypingBubble()
 
         scope.launch {
 
@@ -540,9 +703,8 @@ class BaymaxAI : AppCompatActivity() {
                     )
                 }
 
-            output.append(
-                "\nBaymax:\n$reply\n"
-            )
+            removeTypingBubble(typingRow)
+            addBotBubble(reply)
 
             dbHelper.appendMessage(
                 currentConversationId,
@@ -1183,6 +1345,8 @@ You can consult a doctor through eSehat or talk to our Live AI Health Assistant 
         mediaPlayer?.release()
 
         mediaPlayer = null
+
+        typingJob?.cancel()
 
         scope.cancel()
     }

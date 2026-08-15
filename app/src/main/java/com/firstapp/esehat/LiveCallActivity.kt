@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
 
 class LiveCallActivity : AppCompatActivity() {
 
-    private val WS_URL = "wss://your-app.onrender.com/call" // <-- your Render URL, wss:// scheme, /call path
+    private val WS_URL = "wss://callserver-9iai.onrender.com/call"
 
     private val languages = listOf("English", "Hindi", "Marathi", "Punjabi", "Tamil", "Telugu", "Bengali")
 
@@ -146,6 +146,14 @@ class LiveCallActivity : AppCompatActivity() {
                 val participants = json.optJSONArray("participants")
                 val count = participants?.length() ?: 0
                 tvStatus.text = if (count > 1) "Connected · $count on the call" else "Waiting for the other side…"
+            }
+            "room_full" -> {
+                listeningActive = false
+                speechRecognizer?.destroy()
+                tvStatus.text = "Room is full"
+                tvMicState.text = "This room already has 2 people"
+                appendTranscript("⚠ This room already has 2 people on the call. Try a different room code.")
+                Toast.makeText(this, "Room is full (max 2 people per call)", Toast.LENGTH_LONG).show()
             }
             "translated" -> {
                 val text = json.optString("text")
