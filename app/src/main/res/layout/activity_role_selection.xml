@@ -11,9 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginTop="14dp"
-        android:layout_marginEnd="2dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="20dp"
@@ -21,19 +19,61 @@
         android:paddingEnd="20dp"
         android:paddingBottom="8dp">
 
+        <!-- Logo -->
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/baymax"/>
+            android:src="@drawable/baymax" />
 
+        <!-- App name -->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="eSehat"
             android:textColor="#111111"
+            android:fontFamily="sans-serif-smallcaps"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
+        <!-- Language selector -->
+        <LinearLayout
+            android:id="@+id/languageSelector"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="8dp"
+            android:background="@drawable/edittext"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_ai_logo"
+                android:contentDescription="Language" />
+
+            <TextView
+                android:id="@+id/txtSelectedLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="English"
+                android:textColor="#111111"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="©️"
+                android:textColor="#777777"
+                android:textSize="18sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
